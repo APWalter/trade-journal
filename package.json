@@ -1,5 +1,5 @@
 {
-  "name": "delatlytix",
+  "name": "deltalytix",
   "version": "0.3",
   "private": true,
   "type": "module",
@@ -86,7 +86,6 @@
     "@vercel/sandbox": "^1.0.2",
     "@vercel/speed-insights": "^1.2.0",
     "ai": "^6.0.31",
-    "canvas": "^3.2.0",
     "canvas-confetti": "^1.9.3",
     "chrono": "^1.0.5",
     "class-variance-authority": "^0.7.1",

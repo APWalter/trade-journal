@@ -443,7 +443,14 @@ export const DataProvider: React.FC<{
       } = await supabase.auth.getUser();
 
       if (!user?.id) {
-        await signOut();
+        const isDevMode = process.env.NEXT_PUBLIC_DEV_MODE === "true";
+        if (isDevMode) {
+          console.log("Dev Mode: Bypassing Auth (No User Found)");
+          setIsLoading(false);
+          return;
+        }
+        // In production, redirect to authentication
+        router.push(`/${locale}/authentication`);
         setIsLoading(false);
         return;
       }
@@ -451,8 +458,6 @@ export const DataProvider: React.FC<{
       setSupabaseUser(user);
 
       // CRITICAL: Get dashboard layout first
-      // But check if the layout is already in the state
-      // TODO: Cache layout client side (lightweight)
       if (!dashboardLayout) {
         const userId = await getUserId();
         const dashboardLayoutResponse = await getDashboardLayout(userId);
@@ -461,19 +466,16 @@ export const DataProvider: React.FC<{
             dashboardLayoutResponse as unknown as DashboardLayoutWithWidgets
           );
         } else {
-          // If no layout exists in database, use default layout
           setDashboardLayout(defaultLayouts);
         }
       }
 
-      // Step 2: Fetch trades (with caching server side)
-      // I think we could make basic computations server side to offload inital stats computations
-      // Dev: prefer local IndexedDB to avoid hitting remote DB on reloads
+      // Step 2: Fetch trades
       const userId = await getUserId();
       if (
         process.env.NODE_ENV === "development" &&
         userId &&
-        !params?.isSharedView // avoid caching shared/public views
+        !params?.isSharedView
       ) {
         const cachedTrades = await getTradesCache(userId);
         if (cachedTrades && Array.isArray(cachedTrades) && cachedTrades.length > 0) {
@@ -492,12 +494,16 @@ export const DataProvider: React.FC<{
       }
 
       // Step 3: Fetch user data
-      // TODO: Check what we could cache client side
       const data = await getUserData();
 
       if (!data) {
+        const isDevMode = process.env.NEXT_PUBLIC_DEV_MODE === "true";
+        if (isDevMode) {
+          console.log("Dev Mode: No user data found, continuing without data");
+          setIsLoading(false);
+          return;
+        }
         await signOut();
-        setIsLoading(false);
         return;
       }
 
@@ -515,9 +521,14 @@ export const DataProvider: React.FC<{
       setEvents(data.financialEvents);
       setTickDetails(data.tickDetails);
       setIsFirstConnection(data.userData?.isFirstConnection || false);
-    } catch (error) {
+
+    } catch (error: any) {
+      // NEXT_REDIRECT is thrown by Next.js server actions when redirecting - rethrow it
+      if (error.message === "NEXT_REDIRECT" || error.digest?.includes("NEXT_REDIRECT")) {
+        throw error;
+      }
+
       console.error("Error loading data:", error);
-      // Optionally handle specific error cases here
       if (error instanceof Error) {
         console.error("Error details:", error.message);
       }
@@ -952,9 +963,9 @@ export const DataProvider: React.FC<{
     // Fallback to database subscription
     return Boolean(
       subscription?.status === "active" &&
-        ["plus", "pro"].includes(
-          subscription?.plan?.split("_")[0].toLowerCase() || ""
-        )
+      ["plus", "pro"].includes(
+        subscription?.plan?.split("_")[0].toLowerCase() || ""
+      )
     );
   };
 
@@ -1264,9 +1275,9 @@ export const DataProvider: React.FC<{
                   currentGroups.map((group) =>
                     group.id === targetGroupId
                       ? {
-                          ...group,
-                          accounts: [...group.accounts, accountToMove],
-                        }
+                        ...group,
+                        accounts: [...group.accounts, accountToMove],
+                      }
                       : group
                   )
                 );
@@ -1513,9 +1524,9 @@ export const DataProvider: React.FC<{
       const updatedTrades = trades.map((trade) =>
         tradeIds.includes(trade.id)
           ? {
-              ...trade,
-              ...update,
-            }
+            ...trade,
+            ...update,
+          }
           : trade
       );
       setTrades(updatedTrades);
@@ -1555,17 +1566,17 @@ export const DataProvider: React.FC<{
   const deleteTrades = useCallback(
     async (tradeIds: string[]) => {
       if (!supabaseUser?.id) return;
-      
+
       // Optimistically remove trades from local state immediately
       // Use startTransition to mark the expensive recalculation as non-urgent
       // This keeps the UI responsive while formattedTrades recalculates
       const remainingTrades = trades.filter(
         (trade) => !tradeIds.includes(trade.id)
       );
-      
+
       // Update state in a transition so it doesn't block the UI
-        setTrades(remainingTrades);
-      
+      setTrades(remainingTrades);
+
       try {
         // Delete from database
         await deleteTradesByIdsAction(tradeIds);
