@@ -47,62 +47,6 @@ model TickDetails {
   @@schema("public")
 }
 
-model Subscription {
-  id          String    @id @unique @default(uuid())
-  email       String    @unique
-  plan        String
-  createdAt   DateTime  @default(now())
-  userId      String    @unique
-  endDate     DateTime?
-  status      String    @default("ACTIVE")
-  trialEndsAt DateTime?
-  interval    String?
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([email])
-  @@schema("public")
-}
-
-model BusinessSubscription {
-  id          String    @id @unique @default(uuid())
-  email       String    @unique
-  plan        String
-  createdAt   DateTime  @default(now())
-  userId      String    @unique
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  business    Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
-  businessId  String    @unique
-  endDate     DateTime?
-  status      String    @default("ACTIVE")
-  trialEndsAt DateTime?
-  interval    String?
-
-  @@index([email])
-  @@index([userId])
-  @@index([businessId])
-  @@schema("public")
-}
-
-model TeamSubscription {
-  id          String    @id @unique @default(uuid())
-  email       String    @unique
-  plan        String
-  createdAt   DateTime  @default(now())
-  userId      String    @unique
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  team        Team      @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  teamId      String    @unique
-  endDate     DateTime?
-  status      String    @default("ACTIVE")
-  trialEndsAt DateTime?
-  interval    String?
-
-  @@index([email])
-  @@index([userId])
-  @@index([teamId])
-  @@schema("public")
-}
-
 model Notification {
   id          String    @id @default(cuid())
   userId      String
@@ -117,31 +61,18 @@ model Notification {
 }
 
 model User {
-  id                    String                 @id @default(cuid())
-  email                 String                 @unique
-  auth_user_id          String                 @unique
-  isFirstConnection     Boolean                @default(true)
-  etpToken              String?
-  isBeta                Boolean                @default(false)
-  language              String                 @default("en")
-  thorToken             String?
-  accounts              Account[]
-  businesses            Business[]
-  teams                 Team[]
-  teamSubscriptions     TeamSubscription[]
-  comments              Comment[]
-  dashboardLayout       DashboardLayout?
-  groups                Group[]
-  moods                 Mood[]
-  notifications         Notification[]
-  orders                Order[]
-  posts                 Post[]
-  subscriptions         Subscription?
-  synchronizations      Synchronization[]
-  tags                  Tag[]
-  votes                 Vote[]
-  businessSubscriptions BusinessSubscription[]
-  referral              Referral?
+  id                String            @id @default(cuid())
+  email             String            @unique
+  auth_user_id      String            @unique
+  isFirstConnection Boolean           @default(true)
+  language          String            @default("en")
+  accounts          Account[]
+  dashboardLayout   DashboardLayout?
+  groups            Group[]
+  moods             Mood[]
+  notifications     Notification[]
+  synchronizations  Synchronization[]
+  tags              Tag[]
 
   @@index([email])
   @@schema("public")
@@ -163,106 +94,6 @@ model Synchronization {
   @@unique([userId, service, accountId])
   @@index([userId])
   @@index([service])
-  @@schema("public")
-}
-
-model Team {
-  id               String            @id @default(uuid())
-  name             String
-  userId           String
-  traderIds        String[]          @default([])
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
-  invitations      TeamInvitation[]
-  managers         TeamManager[]
-  teamSubscription TeamSubscription?
-
-  @@unique([name, userId])
-  @@index([userId])
-  @@schema("public")
-}
-
-model TeamInvitation {
-  id        String   @id @default(uuid())
-  teamId    String
-  email     String
-  invitedBy String
-  status    String   @default("PENDING")
-  expiresAt DateTime @default(dbgenerated("(now() + '7 days'::interval)"))
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
-
-  @@unique([teamId, email])
-  @@index([teamId])
-  @@index([email])
-  @@index([status])
-  @@schema("public")
-}
-
-model TeamManager {
-  id        String   @id @default(uuid())
-  teamId    String
-  managerId String
-  access    String   @default("viewer")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  team      Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
-
-  @@unique([teamId, managerId])
-  @@index([teamId])
-  @@index([managerId])
-  @@schema("public")
-}
-
-model Business {
-  id                   String                @id @default(uuid())
-  name                 String
-  userId               String
-  traderIds            String[]              @default([])
-  createdAt            DateTime              @default(now())
-  updatedAt            DateTime              @updatedAt
-  user                 User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  invitations          BusinessInvitation[]
-  managers             BusinessManager[]
-  businessSubscription BusinessSubscription?
-
-  @@unique([name, userId])
-  @@index([userId])
-  @@schema("public")
-}
-
-model BusinessManager {
-  id         String   @id @default(uuid())
-  businessId String
-  managerId  String
-  access     String   @default("viewer")
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
-
-  @@unique([businessId, managerId])
-  @@index([businessId])
-  @@index([managerId])
-  @@schema("public")
-}
-
-model BusinessInvitation {
-  id         String   @id @default(uuid())
-  businessId String
-  email      String
-  invitedBy  String
-  status     String   @default("PENDING")
-  expiresAt  DateTime @default(dbgenerated("(now() + '7 days'::interval)"))
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
-
-  @@unique([businessId, email])
-  @@index([businessId])
-  @@index([email])
-  @@index([status])
   @@schema("public")
 }
 
@@ -364,18 +195,6 @@ model DashboardLayout {
   @@schema("public")
 }
 
-model SubscriptionFeedback {
-  id                 String   @id @default(uuid())
-  email              String
-  event              String
-  createdAt          DateTime @default(now())
-  cancellationReason String?
-  feedback           String?
-
-  @@index([email])
-  @@schema("public")
-}
-
 model Mood {
   id                   String   @id @default(uuid())
   userId               String
@@ -416,20 +235,6 @@ model Shared {
   @@schema("public")
 }
 
-model Referral {
-  id              String   @id @default(uuid())
-  userId          String   @unique
-  slug            String   @unique
-  referredUserIds String[] @default([])
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([slug])
-  @@schema("public")
-}
-
 model FinancialEvent {
   id          String   @id @default(uuid())
   title       String
@@ -441,7 +246,7 @@ model FinancialEvent {
   updatedAt   DateTime @updatedAt
   sourceUrl   String?
   country     String?
-  lang        String   @default("fr")
+  lang        String   @default("en")
   timezone    String   @default("UTC")
 
   @@unique([title, date, lang, timezone])
@@ -471,80 +276,6 @@ model Newsletter {
   lastName  String?
 
   @@index([email])
-  @@schema("public")
-}
-
-model Post {
-  id          String     @id @default(uuid())
-  title       String
-  content     String
-  type        PostType   @default(FEATURE_REQUEST)
-  status      PostStatus @default(OPEN)
-  userId      String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  screenshots String[]   @default([])
-  comments    Comment[]
-  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  votes       Vote[]
-
-  @@index([userId])
-  @@index([type])
-  @@index([status])
-  @@schema("public")
-}
-
-model Comment {
-  id        String    @id @default(uuid())
-  content   String
-  postId    String
-  userId    String
-  parentId  String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
-  replies   Comment[] @relation("CommentReplies")
-  post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([postId])
-  @@index([userId])
-  @@index([parentId])
-  @@schema("public")
-}
-
-model Vote {
-  id        String   @id @default(uuid())
-  type      VoteType
-  postId    String
-  userId    String
-  createdAt DateTime @default(now())
-  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([postId, userId])
-  @@index([postId])
-  @@index([userId])
-  @@schema("public")
-}
-
-model Order {
-  id                 String   @id @default(uuid())
-  accountId          String
-  orderId            String   @unique
-  orderAction        String
-  quantity           Int
-  averageFilledPrice Float
-  isOpeningOrder     Boolean
-  time               DateTime
-  symbol             String
-  instrumentType     String
-  userId             String
-  createdAt          DateTime @default(now())
-  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([accountId])
-  @@index([userId])
   @@schema("public")
 }
 
@@ -583,30 +314,6 @@ model HistoricalData {
   @@index([symbol])
   @@index([databentSymbol])
   @@index([timestamp])
-  @@schema("public")
-}
-
-enum PostType {
-  FEATURE_REQUEST
-  BUG_REPORT
-  DISCUSSION
-
-  @@schema("public")
-}
-
-enum PostStatus {
-  OPEN
-  IN_PROGRESS
-  COMPLETED
-  CLOSED
-
-  @@schema("public")
-}
-
-enum VoteType {
-  UPVOTE
-  DOWNVOTE
-
   @@schema("public")
 }
 

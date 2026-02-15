@@ -1,20 +1,8 @@
 {
   "crons": [
     {
-      "path": "/api/cron/investing?lang=fr&db=true",
-      "schedule": "0 5 * * 1"
-    },
-    {
       "path": "/api/cron/investing?lang=en&db=true",
       "schedule": "0 5 * * 1"
-    },
-    {
-      "path": "/api/cron/renewal-notice",
-      "schedule": "0 9 * * *"
-    },
-    {
-      "path": "/api/cron/renew-tradovate-token",
-      "schedule": "*/10 * * * *"
     }
   ]
 }

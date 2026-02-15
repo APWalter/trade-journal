@@ -3,8 +3,6 @@ import { Trade, Prisma, DashboardLayout } from '@/prisma/generated/prisma/client
 import { revalidatePath, revalidateTag, updateTag } from 'next/cache'
 import { Widget, Layouts } from '@/app/[locale]/dashboard/types/dashboard'
 import { createClient, getUserId } from './auth'
-import { startOfDay } from 'date-fns'
-import { getSubscriptionDetails } from './subscription'
 import { prisma } from '@/lib/prisma'
 import { unstable_cache } from 'next/cache'
 import { defaultLayouts } from '@/lib/default-layouts'
@@ -143,34 +141,25 @@ export async function saveTradesAction(
   }
 }
 
-// Create cache function dynamically for each user/subscription combination
-function getCachedTrades(userId: string, isSubscribed: boolean, page: number, chunkSize: number): Promise<Trade[]> {
+// Create cache function dynamically for each user
+function getCachedTrades(userId: string, page: number, chunkSize: number): Promise<Trade[]> {
   return unstable_cache(
     async () => {
-      console.log(`[Cache MISS] Fetching trades for user ${userId}, subscribed: ${isSubscribed}`)
+      console.log(`[Cache MISS] Fetching trades for user ${userId}`)
 
-      const query: any = {
+      return await prisma.trade.findMany({
         where: { userId },
         orderBy: { entryDate: 'desc' },
         skip: (page - 1) * chunkSize,
         take: chunkSize
-      }
-
-      if (!isSubscribed) {
-        const twoWeeksAgo = startOfDay(new Date())
-        twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14)
-        query.where.entryDate = { gte: twoWeeksAgo.toISOString() }
-      }
-
-      return await prisma.trade.findMany(query)
+      })
     },
-    // Static string array - this is the cache key
-    [`trades-${userId}-${isSubscribed}-${page}`],
+    [`trades-${userId}-${page}`],
     {
-      tags: [`trades-${userId}`], // User-specific tag for revalidation
-      revalidate: 3600 // Revalidate every hour (3600 seconds)
+      tags: [`trades-${userId}`],
+      revalidate: 3600
     }
-  )()  // Note the () at the end - we call the cached function immediately
+  )()
 }
 
 
@@ -181,27 +170,15 @@ export async function getTradesAction(userId: string | null = null, forceRefresh
     throw new Error('User not found')
   }
 
-  const subscriptionDetails = await getSubscriptionDetails()
-  const isSubscribed = subscriptionDetails?.isActive || false
-
   // If forceRefresh is true, bypass cache and fetch directly
   if (forceRefresh) {
     console.log(`[getTrades] Force refresh - bypassing cache for user ${userId || user?.id}`)
     updateTag(`trades-${userId || user?.id}`)
 
-    const query: any = {
-      where: {
-        userId: userId || user?.id,
-      },
+    const trades = await prisma.trade.findMany({
+      where: { userId: userId || user?.id },
       orderBy: { entryDate: 'desc' }
-    }
-    if (!isSubscribed) {
-      const twoWeeksAgo = startOfDay(new Date())
-      twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14)
-      query.where.entryDate = { gte: twoWeeksAgo.toISOString() }
-    }
-
-    const trades = await prisma.trade.findMany(query)
+    })
     console.log(`[getTrades] Force refresh - Found ${trades.length} trades`)
 
     return trades.map(trade => ({
@@ -211,25 +188,14 @@ export async function getTradesAction(userId: string | null = null, forceRefresh
     }))
   }
 
-  // Get cached trades
-  // Per page
-  const query: any = {
-    where: {
-      userId: userId || user?.id,
-    }
-  }
-  if (!isSubscribed) {
-    const twoWeeksAgo = startOfDay(new Date())
-    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14)
-    query.where.entryDate = { gte: twoWeeksAgo.toISOString() }
-  }
-  const count = await prisma.trade.count(query)
-  // Split pages by chunks of 1000
+  // Get cached trades in chunks of 1000
+  const effectiveUserId = userId || user?.id || ''
+  const count = await prisma.trade.count({ where: { userId: effectiveUserId } })
   const chunkSize = 1000
   const totalPages = Math.ceil(count / chunkSize)
   const trades: Trade[] = []
   for (let page = 1; page <= totalPages; page++) {
-    const pageTrades = await getCachedTrades(userId || user?.id || '', isSubscribed, page, chunkSize)
+    const pageTrades = await getCachedTrades(effectiveUserId, page, chunkSize)
     trades.push(...pageTrades)
   }
   console.log(`[getTrades] Found ${count} trades fetched ${trades.length}`)

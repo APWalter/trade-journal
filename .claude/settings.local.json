@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test:*)",
+      "Bash(xargs -I {} sh -c 'echo \"\"=== {} ===\"\" && head -30 {}')",
+      "Bash(find:*)",
+      "Bash(wc:*)",
+      "Bash(ls:*)",
+      "Bash(for d in \"app/[locale]/\\(landing\\)\" \"app/[locale]/admin\" \"app/[locale]/teams\" \"app/api/stripe\" \"app/api/tradovate\" \"app/api/rithmic\" \"server/billing.ts\" \"server/stripe.ts\" \"store/stripe-subscription-store.ts\" \"locales/fr.ts\")",
+      "Bash(do test -e:*)",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(git add:*)"
+    ]
+  }
+}

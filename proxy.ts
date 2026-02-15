@@ -1,14 +1,10 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { createI18nMiddleware } from "next-international/middleware"
 import { createServerClient } from "@supabase/ssr"
-import { geolocation } from "@vercel/functions"
 import { User } from "@supabase/supabase-js"
 
-// Maintenance mode flag
-const MAINTENANCE_MODE = false
-
 const I18nMiddleware = createI18nMiddleware({
-  locales: ["en", "fr", "de", "es", "it", "pt", "vi", "hi", "ja", "zh", "yo"],
+  locales: ["en"],
   defaultLocale: "en",
   urlMappingStrategy: "rewrite",
 })
@@ -78,6 +74,11 @@ export default async function proxy(req: NextRequest) {
     pathname.includes("/opengraph-image")
   ) {
     return NextResponse.next()
+  }
+
+  // Redirect root to dashboard
+  if (pathname === "/" || pathname === "/en") {
+    return NextResponse.redirect(new URL("/en/dashboard", req.url))
   }
 
   // 1. Apply i18n middleware first

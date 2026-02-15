@@ -62,8 +62,6 @@ import { deleteTagAction } from "@/server/tags";
 import { useRouter } from "next/navigation";
 import { useCurrentLocale } from "@/locales/client";
 import { useMoodStore } from "@/store/mood-store";
-import { useStripeSubscriptionStore } from "@/store/stripe-subscription-store";
-import { getSubscriptionData } from "@/server/billing";
 import { defaultLayouts } from "@/lib/default-layouts";
 
 // Types from trades-data.tsx
@@ -336,16 +334,6 @@ export const DataProvider: React.FC<{
   const isLoading = useUserStore((state) => state.isLoading);
   const setIsLoading = useUserStore((state) => state.setIsLoading);
 
-  // Stripe subscription store
-  const setStripeSubscription = useStripeSubscriptionStore(
-    (state) => state.setStripeSubscription
-  );
-  const setStripeSubscriptionLoading = useStripeSubscriptionStore(
-    (state) => state.setIsLoading
-  );
-  const setStripeSubscriptionError = useStripeSubscriptionStore(
-    (state) => state.setError
-  );
 
   // Local states
   const [sharedParams, setSharedParams] = useState<SharedParams | null>(null);
@@ -551,21 +539,6 @@ export const DataProvider: React.FC<{
     const loadDataIfMounted = async () => {
       if (!mounted) return;
       await loadData();
-      // Load Stripe subscription data
-      try {
-        setStripeSubscriptionLoading(true);
-        const stripeSubscriptionData = await getSubscriptionData();
-        setStripeSubscription(stripeSubscriptionData);
-        setStripeSubscriptionError(null);
-      } catch (error) {
-        console.error("Error loading Stripe subscription:", error);
-        setStripeSubscriptionError(
-          error instanceof Error ? error.message : "Failed to load subscription"
-        );
-        setStripeSubscription(null);
-      } finally {
-        setStripeSubscriptionLoading(false);
-      }
     };
 
     loadDataIfMounted();
@@ -587,22 +560,6 @@ export const DataProvider: React.FC<{
     updateLanguage();
   }, [locale, supabaseUser?.id]);
 
-  const loadStripeSubscription = useCallback(async () => {
-    try {
-      setStripeSubscriptionLoading(true);
-      const stripeSubscriptionData = await getSubscriptionData();
-      setStripeSubscription(stripeSubscriptionData);
-      setStripeSubscriptionError(null);
-    } catch (error) {
-      console.error("Error loading Stripe subscription:", error);
-      setStripeSubscriptionError(
-        error instanceof Error ? error.message : "Failed to load subscription"
-      );
-      setStripeSubscription(null);
-    } finally {
-      setStripeSubscriptionLoading(false);
-    }
-  }, []);
 
   const refreshTradesOnly = useCallback(
     async (options?: { force?: boolean; withLoading?: boolean }) => {
@@ -952,21 +909,8 @@ export const DataProvider: React.FC<{
   );
 
   const isPlusUser = () => {
-    // Use Stripe subscription store for more accurate subscription status
-    const stripeSubscription =
-      useStripeSubscriptionStore.getState().stripeSubscription;
-    if (stripeSubscription) {
-      const planName = stripeSubscription.plan?.name?.toLowerCase() || "";
-      return planName.includes("plus") || planName.includes("pro");
-    }
-
-    // Fallback to database subscription
-    return Boolean(
-      subscription?.status === "active" &&
-      ["plus", "pro"].includes(
-        subscription?.plan?.split("_")[0].toLowerCase() || ""
-      )
-    );
+    // Single-user app — always has full access
+    return true;
   };
 
   const saveAccount = useCallback(
