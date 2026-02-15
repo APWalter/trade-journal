@@ -21,64 +21,39 @@ interface MissingYouEmailProps {
 
 const content = {
   en: {
-    preview: "We miss seeing you on Deltalytix",
+    preview: "We miss seeing you on Shikuf",
     greeting: "Hello",
-    notice: "We noticed that you haven't imported your trading data to Deltalytix yet.",
+    notice: "We noticed that you haven't imported your trading data to Shikuf yet.",
     withoutData: "Without your data, we can't provide you with detailed analyses and personalized insights that could transform your trading approach.",
     dailyPerformance: "Your Daily Performance",
     winLoss: "Win/Loss Distribution",
     wins: "Wins",
     losses: "Losses",
     winRate: "Win Rate",
-    could: "With Deltalytix, you could:",
+    could: "With Shikuf, you could:",
     features: [
       "Visualize your daily performance",
       "Analyze your win/loss ratio",
       "Receive personalized advice to improve your results",
       "Identify your strengths and areas for improvement"
     ],
-    startToday: "Start today by importing your data and discover how Deltalytix can transform your trading approach.",
-    importButton: "Import my data →",
-    founder: "Founder of Deltalytix",
-    footer: "This email was sent by Deltalytix",
+    startToday: "Start today by importing your data and discover how Shikuf can transform your trading approach.",
+    importButton: "Import my data",
+    founder: "Shikuf team",
+    footer: "This email was sent by Shikuf",
     unsubscribe: "Unsubscribe",
     days: ["Mon", "Tue", "Wed", "Thu", "Fri"]
   },
-  fr: {
-    preview: "Nous manquons de vous voir sur Deltalytix",
-    greeting: "Bonjour",
-    notice: "Nous avons remarqué que vous n'avez pas encore importé vos données de trading sur Deltalytix.",
-    withoutData: "Sans vos données, nous ne pouvons pas vous offrir les analyses détaillées et les insights personnalisés qui pourraient transformer votre approche du trading.",
-    dailyPerformance: "Vos Performances Journalières",
-    winLoss: "Distribution Gains/Pertes",
-    wins: "Gains",
-    losses: "Pertes",
-    winRate: "Taux de réussite",
-    could: "Avec Deltalytix, vous pourriez :",
-    features: [
-      "Visualiser vos performances quotidiennes",
-      "Analyser votre ratio gains/pertes",
-      "Recevoir des conseils personnalisés pour améliorer vos résultats",
-      "Identifier vos points forts et vos axes d'amélioration"
-    ],
-    startToday: "Commencez dès aujourd'hui en important vos données et découvrez comment Deltalytix peut transformer votre approche du trading.",
-    importButton: "Importer mes données →",
-    founder: "Fondateur de Deltalytix",
-    footer: "Cet email vous a été envoyé par Deltalytix",
-    unsubscribe: "Se désabonner",
-    days: ["Lun", "Mar", "Mer", "Jeu", "Ven"]
-  }
 };
 
 export default function MissingYouEmail({
-  email = "jean.dupont@example.com",
+  email = "user@example.com",
   firstName = "trader",
-  language = "fr",
+  language = "en",
 }: MissingYouEmailProps) {
-  const lang = language === "en" ? "en" : "fr";
-  const t = content[lang];
+  const t = content.en;
   const unsubscribeUrl = email
-    ? `https://deltalytix.app/api/email/unsubscribe?email=${encodeURIComponent(email)}`
+    ? `https://shikuf.app/api/email/unsubscribe?email=${encodeURIComponent(email)}`
     : '#';
 
   return (
@@ -177,16 +152,14 @@ export default function MissingYouEmail({
               <Section className="text-center mb-8">
                 <Button
                   className="bg-[#3b82f6] text-white text-sm px-[24px] py-[10px] rounded-[4px] font-medium box-border"
-                  href="https://deltalytix.app/authentication"
+                  href="https://shikuf.app/authentication"
                 >
                   {t.importButton}
                 </Button>
               </Section>
 
               <Text className="text-gray-800 mt-8 mb-4">
-                Hugo DEMENEZ
-                <br />
-                <span className="text-gray-600">{t.founder}</span>
+                Shikuf team
               </Text>
 
               <Hr className="border-gray-200 my-8" />
@@ -199,7 +172,7 @@ export default function MissingYouEmail({
                   {t.unsubscribe}
                 </Link>
                 {' • '}
-                © {new Date().getFullYear()} Deltalytix
+                © {new Date().getFullYear()} Shikuf
               </Text>
             </Section>
           </Section>

@@ -10,7 +10,9 @@
       "Bash(do test -e:*)",
       "Bash(echo:*)",
       "Bash(done)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(grep:*)"
     ]
   }
 }

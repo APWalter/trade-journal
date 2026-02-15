@@ -4,7 +4,6 @@ import { PrismaPg } from "@prisma/adapter-pg"
 import pg from "pg"
 import { Resend } from 'resend'
 import WelcomeEmail from '@/components/emails/welcome'
-import { getLatestVideoFromPlaylist } from "@/app/[locale]/admin/actions/youtube"
 
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -50,25 +49,15 @@ export async function POST(req: Request) {
       }
     })
 
-    const unsubscribeUrl = `https://deltalytix.app/api/email/unsubscribe?email=${encodeURIComponent(record.email)}`
-
-    // Check user language preference from database
-    const user = await prisma.user.findUnique({
-      where: { email: record.email }
-    })
-    const userLanguage = user?.language || 'en'
-    let youtubeId = 'ZBrIZpCh_7Q'
-    if (userLanguage === 'fr') {
-      youtubeId = await getLatestVideoFromPlaylist() || '_-VtBaOGctY'
-    }
+    const unsubscribeUrl = `https://shikuf.app/api/email/unsubscribe?email=${encodeURIComponent(record.email)}`
 
     // Use react prop instead of rendering to HTML
     const { data, error } = await resend.emails.send({
-      from: 'Deltalytix <welcome@eu.updates.deltalytix.app>',
+      from: 'Shikuf <welcome@shikuf.app>',
       to: record.email,
-      subject: userLanguage === 'fr' ? 'Bienvenue sur Deltalytix' : 'Welcome to Deltalytix',
-      react: WelcomeEmail({ firstName, email: record.email, language: userLanguage, youtubeId: youtubeId || 'ZBrIZpCh_7Q' }),
-      replyTo: 'hugo.demenez@deltalytix.app',
+      subject: 'Welcome to Shikuf',
+      react: WelcomeEmail({ firstName, email: record.email, language: 'en', youtubeId: 'ZBrIZpCh_7Q' }),
+      replyTo: 'aryehwalter@gmail.com',
       headers: {
         'List-Unsubscribe': `<${unsubscribeUrl}>`,
         'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'

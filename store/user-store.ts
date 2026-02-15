@@ -194,7 +194,7 @@ export const useUserStore = create<UserStore>()(
         }),
     }),
     {
-      name: "deltalytix-user-store",
+      name: "shikuf-user-store",
       storage: createJSONStorage(() => localStorage),
       // Only persist timezone and other non-sensitive settings
       partialize: (state) => ({

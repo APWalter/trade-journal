@@ -177,7 +177,7 @@ export const useAnalysisStore = create<AnalysisStore>()(
       },
     }),
     {
-      name: "deltalytix-analysis-store",
+      name: "shikuf-analysis-store",
       storage: createJSONStorage(() => localStorage),
       // Persist all state except isLoading
       partialize: (state) => ({

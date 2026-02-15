@@ -4,9 +4,8 @@ import { openai } from "@ai-sdk/openai"
 import { streamObject } from "ai"
 import { z } from 'zod/v3';
 
-const DELTALYTIX_CONTEXT = {
-  fr: `Deltalytix est une plateforme web pour day traders de futures, avec une interface intuitive et personnalisable. Conçue à partir de mon expérience personnelle en tant que day trader de futures, utilisant des stratégies de scalping, elle propose des fonctionnalités comme la gestion de multiple compte, le suivi des challenges propfirms, et des tableaux de bord personnalisables. Notre but est de fournir aux traders des analyses approfondies sur leurs habitudes de trading pour optimiser leurs stratégies et améliorer leur prise de décision.`,
-  en: `Deltalytix is a web platform for futures day traders, featuring an intuitive and customizable interface. Designed from my personal experience as a futures day trader using scalping strategies, it offers features like multiple account management, propfirm challenge tracking, and customizable dashboards. Our goal is to provide traders with in-depth analysis of their trading habits to optimize their strategies and improve decision-making.`
+const SHIKUF_CONTEXT = {
+  en: `Shikuf is a web platform for day traders, featuring an intuitive and customizable interface. It offers features like multiple account management, customizable dashboards, and in-depth analysis of trading habits to optimize strategies and improve decision-making.`
 }
 
 const analysisSchema = z.object({
@@ -29,12 +28,8 @@ export async function generateTradingAnalysis(
   language: 'fr' | 'en'
 ): Promise<AnalysisResult> {
   const defaultAnalysis = {
-    resultAnalysisIntro: language === 'fr'
-      ? "Voici vos statistiques de trading de la semaine."
-      : "Here are your trading statistics for the week.",
-    tipsForNextWeek: language === 'fr'
-      ? "Continuez à appliquer votre stratégie avec discipline et à analyser vos trades pour progresser."
-      : "Continue applying your strategy with discipline and analyzing your trades to improve."
+    resultAnalysisIntro: "Here are your trading statistics for the week.",
+    tipsForNextWeek: "Continue applying your strategy with discipline and analyzing your trades to improve."
   }
 
   try {
@@ -58,47 +53,8 @@ export async function generateTradingAnalysis(
     const { partialObjectStream } = streamObject({
       model: openai("gpt-4.1-nano-2025-04-14"),
       schema: analysisSchema,
-      prompt: language === 'fr'
-        ? `Tu es un coach en trading qui aide les traders à progresser. Tu es toujours positif et encourageant.
-${DELTALYTIX_CONTEXT.fr}
-
-Voici les résultats de trading des deux dernières semaines :
-
-Données de performance journalières :
-${lastTwoWeeks.map((week, index) => {
-  const isCurrentWeek = index === 0;
-  const weekLabel = isCurrentWeek ? 'Semaine en cours' : 'Semaine précédente';
-  return `${weekLabel}:\n${week.map(day => 
-    `- ${day.date.toLocaleDateString('fr-FR', { weekday: 'long', day: '2-digit', month: 'long' })}: ${day.pnl}€`
-  ).join('\n')}`
-}).join('\n\n')}
-
-Pour l'analyse (intro) :
-1. Fais une phrase simple qui explique comment s'est passée la semaine en cours
-2. Trouve toujours quelque chose de positif à dire, même si c'est petit
-3. Parle comme à un ami, avec des mots simples
-4. Tu peux faire jusqu'à 60 mots
-5. Regarde comment les résultats changent chaque jour
-6. Dis ce qui va bien et ce qui peut être amélioré, mais toujours gentiment
-7. Compare avec la semaine précédente si possible
-8. Prends en compte le jour de la semaine pour l'analyse
-9. Mets l'accent sur la semaine en cours, en utilisant la semaine précédente comme point de référence
-
-Pour les conseils (tips) :
-1. Donne un conseil simple et facile à suivre
-2. Tu peux faire jusqu'à 36 mots
-3. Parle d'un outil de Deltalytix qui peut aider
-4. Explique comment ce conseil peut aider à faire mieux
-5. Sois précis sur ce qu'il faut faire
-6. Regarde les bons et les moins bons jours pour donner un conseil utile
-7. Dis les choses de façon positive, comme une chance de s'améliorer
-8. Utilise des mots simples et clairs
-9. Prends en compte les tendances sur les deux semaines
-10. Concentre-toi sur les améliorations possibles pour la semaine à venir
-
-Fais une analyse qui aide le trader à progresser :`
-        : `You are a trading coach who helps traders improve. You are always positive and encouraging.
-${DELTALYTIX_CONTEXT.en}
+      prompt: `You are a trading coach who helps traders improve. You are always positive and encouraging.
+${SHIKUF_CONTEXT.en}
 
 Here are the trading results for the last two weeks:
 
@@ -125,7 +81,7 @@ For the analysis (intro):
 For the tips:
 1. Give a simple and easy-to-follow tip
 2. You can use up to 36 words
-3. Talk about a Deltalytix tool that can help
+3. Talk about a Shikuf tool that can help
 4. Explain how this tip can help do better
 5. Be specific about what to do
 6. Look at the good and not-so-good days to give useful advice

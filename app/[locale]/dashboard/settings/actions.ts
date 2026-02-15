@@ -675,7 +675,7 @@ export async function sendTeamInvitation(teamId: string, traderEmail: string) {
 
     // Generate join URL
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 
-      (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://deltalytix.app')
+      (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://shikuf.app')
     const joinUrl = `${baseUrl}/teams/join?invitation=${invitation.id}`
 
     // Render email
@@ -697,13 +697,13 @@ export async function sendTeamInvitation(teamId: string, traderEmail: string) {
 
     const resend = new Resend(process.env.RESEND_API_KEY)
     const { error: emailError } = await resend.emails.send({
-      from: 'Deltalytix Team <team@eu.updates.deltalytix.app>',
+      from: 'Shikuf <team@shikuf.app>',
       to: traderEmail,
       subject: existingUser?.language === 'fr' 
-        ? `Invitation à rejoindre ${team.name} sur Deltalytix`
-        : `Invitation to join ${team.name} on Deltalytix`,
+        ? `Invitation à rejoindre ${team.name} sur Shikuf`
+        : `Invitation to join ${team.name} on Shikuf`,
       html: emailHtml,
-      replyTo: 'hugo.demenez@deltalytix.app',
+      replyTo: 'aryehwalter@gmail.com',
     })
 
     if (emailError) {

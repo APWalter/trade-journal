@@ -35,13 +35,13 @@ export default function NewsletterEmail({
   return (
     <Html>
       <Head />
-      <Preview>Nouveautés sur Deltalytix - Votre plateforme de suivi de trading</Preview>
+      <Preview>New features on Shikuf - Your trading tracking platform</Preview>
       <Tailwind>
         <Body className="bg-gray-50 font-sans">
           <Section className="bg-white max-w-[600px] mx-auto rounded-lg shadow-xs">
             <Section className="px-6 py-8">
               <Heading className="text-2xl font-bold text-gray-900 mb-6">
-                Bonjour {firstName},
+                Hello {firstName},
               </Heading>
               
               <Text className="text-gray-800 mb-6 leading-6">
@@ -52,7 +52,7 @@ export default function NewsletterEmail({
                 <Link href={`https://youtu.be/${youtubeId}`}>
                   <Img
                     src={thumbnailUrl}
-                    alt="Dernière vidéo Deltalytix"
+                    alt="Latest Shikuf video"
                     className="rounded-lg w-full mb-4 shadow-xs"
                   />
                 </Link>
@@ -60,7 +60,7 @@ export default function NewsletterEmail({
                   className="bg-black text-white text-sm px-4 py-2 rounded-md font-medium box-border"
                   href={`https://youtu.be/${youtubeId}`}
                 >
-                  ▶️ Voir la dernière vidéo
+                  Watch the latest video
                 </Button>
               </Section>
 
@@ -73,35 +73,33 @@ export default function NewsletterEmail({
               </Section>
 
               <Text className="text-gray-800 mb-4 leading-6">
-                Si vous avez la moindre question ou besoin d&apos;un coup de main pour démarrer, n&apos;hésitez pas à me faire signe, je serai ravi de vous aider.
+                If you have any questions or need help getting started, please let us know.
               </Text>
 
               <Text className="text-gray-800 mb-6 leading-6">
-                Bon trading et à bientôt !
+                Happy trading!
               </Text>
 
               <Section className="text-center">
                 <Button 
                   className="bg-black text-white text-sm px-6 py-2.5 rounded-md font-medium box-border"
-                  href="https://deltalytix.app/dashboard"
+                  href="https://shikuf.app/dashboard"
                 >
-                  Accéder à mon tableau de bord →
+                  Access my dashboard
                 </Button>
               </Section>
 
               <Text className="text-gray-800 mt-8 mb-4">
-                Hugo DEMENEZ
-                <br />
-                <span className="text-gray-600">Fondateur de Deltalytix</span>
+                Shikuf team
               </Text>
 
               <Hr className="border-gray-200 my-8" />
 
               <Text className="text-gray-400 text-xs text-center">
-                Cet email vous a été envoyé par Deltalytix
+                This email was sent by Shikuf
                 {' • '}
                 <Link href={unsubscribeUrl} className="text-gray-400 underline">
-                  Se désabonner
+                  Unsubscribe
                 </Link>
               </Text>
             </Section>

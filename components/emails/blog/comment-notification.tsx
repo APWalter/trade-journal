@@ -31,39 +31,22 @@ const CommentNotificationEmail = ({
   commentContent,
   commentDate,
   recipientName,
-  unsubscribeUrl = 'https://deltalytix.app/settings/notifications',
-  language = 'fr'
+  unsubscribeUrl = 'https://shikuf.app/settings/notifications',
+  language = 'en'
 }: CommentNotificationEmailProps) => {
-  const t = {
-    fr: {
-      preview: 'Nouveau commentaire sur votre publication Deltalytix',
-      greeting: 'Bonjour',
-      notification: 'Bonne nouvelle ! Quelqu\'un vient de commenter votre publication sur Deltalytix.',
-      article: 'Publication',
-      viewComment: 'Voir le commentaire',
-      footer: {
-        text: 'Deltalytix - Analyses avancées pour traders modernes',
-        help: 'Besoin d\'aide ? Rejoignez notre',
-        community: 'communauté Discord',
-        unsubscribe: 'Se désabonner des notifications de commentaires'
-      }
-    },
-    en: {
-      preview: 'New comment on your Deltalytix post',
-      greeting: 'Hello',
-      notification: 'Great news! Someone just commented on your post on Deltalytix.',
-      article: 'Post',
-      viewComment: 'View comment',
-      footer: {
-        text: 'Deltalytix - Advanced Analytics for Modern Traders',
-        help: 'Need help? Join our',
-        community: 'Discord community',
-        unsubscribe: 'Unsubscribe from comment notifications'
-      }
+  const i18n = {
+    preview: 'New comment on your Shikuf post',
+    greeting: 'Hello',
+    notification: 'Great news! Someone just commented on your post on Shikuf.',
+    article: 'Post',
+    viewComment: 'View comment',
+    footer: {
+      text: 'Shikuf - Advanced Analytics for Modern Traders',
+      help: 'Need help? Contact',
+      community: 'support',
+      unsubscribe: 'Unsubscribe from comment notifications'
     }
   }
-
-  const i18n = t[language as keyof typeof t]
 
   return (
     <Html>
@@ -112,7 +95,7 @@ const CommentNotificationEmail = ({
               </Text>
               <Text className="text-gray-400 text-xs text-center m-0">
                 {i18n.footer.help}{' '}
-                <Link href="https://discord.gg/a5YVF5Ec2n" className="text-gray-400 underline">
+                <Link href="#" className="text-gray-400 underline">
                   {i18n.footer.community}
                 </Link>
                 {' • '}

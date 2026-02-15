@@ -38,10 +38,10 @@ export async function POST(req: Request, props: { params: Promise<{ userid: stri
       return NextResponse.json({
         success: true,
         emailData: {
-          from: 'Deltalytix <newsletter@eu.updates.deltalytix.app>',
+          from: 'Shikuf <newsletter@shikuf.app>',
           to: [newsletter.email],
-          replyTo: 'hugo.demenez@deltalytix.app',
-          subject: user.language === 'fr' ? 'Nous manquons de vous voir sur Deltalytix' : 'We miss you on Deltalytix',
+          replyTo: 'aryehwalter@gmail.com',
+          subject: 'We miss you on Shikuf',
           html: missingYouEmailHtml
         }
       })
@@ -78,15 +78,15 @@ export async function POST(req: Request, props: { params: Promise<{ userid: stri
     return NextResponse.json({
       success: true,
       emailData: {
-        from: 'Deltalytix <newsletter@eu.updates.deltalytix.app>',
+        from: 'Shikuf <newsletter@shikuf.app>',
         to: [user.email],
-        subject: user.language === 'fr' ? 'Vos statistiques de trading de la semaine 📈' : 'Your trading statistics for the week 📈',
+        subject: 'Your trading statistics for the week 📈',
         html: weeklyStatsEmailHtml,
         headers: {
           'List-Unsubscribe': `<${unsubscribeUrl}>`,
           'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click'
         },
-        replyTo: 'hugo.demenez@deltalytix.app'
+        replyTo: 'aryehwalter@gmail.com'
       }
     })
 

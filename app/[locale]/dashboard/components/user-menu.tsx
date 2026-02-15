@@ -244,7 +244,7 @@ export default function UserMenu() {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => {
-              localStorage.removeItem('deltalytix_user_data')
+              localStorage.removeItem('shikuf_user_data')
               signOut()
             }}
             className="flex items-center"

@@ -20,31 +20,30 @@ export async function generateMetadata({
   const ref = (params?.ref as string) ?? "";
 
   // Build the dynamic image URL (works locally & in production)
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "https://deltalytix.app";
+  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "https://shikuf.app";
   const ogUrl = `${base}/api/og${ref ? `?ref=${encodeURIComponent(ref)}` : ""}`;
 
   return {
-    title: "Deltalytix",
-    description: "Next generation trading dashboard",
-    metadataBase: new URL("https://deltalytix.app"),
+    title: "Shikuf",
+    description: "Personal trade journal",
+    metadataBase: new URL("https://shikuf.app"),
     alternates: {
-      canonical: "https://deltalytix.app",
+      canonical: "https://shikuf.app",
       languages: {
-        "en-US": "https://deltalytix.app",
-        "fr-FR": "https://deltalytix.app/fr",
+        "en-US": "https://shikuf.app",
       },
     },
     // ---------- OPEN GRAPH ----------
     openGraph: {
-      title: "Deltalytix",
+      title: "Shikuf",
       description:
-        "Deltalytix is a next generation trading dashboard that provides real-time insights and analytics for traders.",
+        "Shikuf is a personal trade journal with analytics, AI insights, and automatic Schwab sync.",
       images: [
         {
-          url: ref ? ogUrl : "/opengraph-image.png", // dynamic when ref exists
+          url: ref ? ogUrl : "/opengraph-image.png",
           width: 1200,
           height: 630,
-          alt: "Deltalytix Open Graph Image",
+          alt: "Shikuf Open Graph Image",
         },
       ],
     },
@@ -52,8 +51,8 @@ export async function generateMetadata({
     // ---------- TWITTER ----------
     twitter: {
       card: "summary_large_image",
-      title: "Deltalytix",
-      description: "Next generation trading dashboard",
+      title: "Shikuf",
+      description: "Personal trade journal",
       images: [ref ? ogUrl : "/twitter-image.png"],
     },
 
@@ -97,9 +96,9 @@ export async function generateMetadata({
 
     // ---------- OTHER ----------
     other: { google: "notranslate" },
-    authors: [{ name: "Hugo DEMENEZ" }],
-    creator: "Hugo DEMENEZ",
-    publisher: "Hugo DEMENEZ",
+    authors: [{ name: "Aryeh" }],
+    creator: "Aryeh",
+    publisher: "Aryeh",
     formatDetection: { email: false, address: false, telephone: false },
   };
 }

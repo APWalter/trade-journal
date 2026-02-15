@@ -33,49 +33,8 @@ interface TraderStatsEmailProps {
 }
 
 const translations = {
-  fr: {
-    preview: 'Vos statistiques de trading de la semaine - Deltalytix',
-    greeting: 'Bonjour',
-    disclaimer: 'Cette analyse, effectuée sur les 14 derniers jours par un algorithme, peut contenir des erreurs.',
-    dailyPerformance: 'Performances Journalières',
-    winLossDistribution: 'Distribution Gains/Pertes',
-    wins: 'Gains',
-    losses: 'Pertes',
-    successRate: 'Taux de réussite',
-    detailedStats: 'Voir mes statistiques détaillées →',
-    founder: 'Fondateur de Deltalytix',
-    unsubscribe: 'Se désabonner',
-    sentBy: 'Cet email vous a été envoyé par Deltalytix',
-    weekdays: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'],
-    warmUpMessage: 'Je vois que cette semaine a été difficile. Je serais ravi de discuter avec vous pour comprendre vos défis et vous aider à améliorer vos performances. Prenons rendez-vous pour un appel personnalisé.',
-    scheduleCall: 'Planifier un appel* →',
-    learningOpportunities: 'Opportunités d\'apprentissage',
-    nextStepsTitle: 'Prochaines étapes pour s\'améliorer',
-    insightsTitle: 'Principales observations',
-    growthMindset: 'Souvenez-vous : Chaque journée difficile est une opportunité d\'apprentissage. Les traders les plus performants considèrent les pertes comme des données précieuses.',
-    activityTitle: 'Votre activité de trading',
-    tradingActivity: 'Activité de trading',
-    daysTraded: 'Jours tradés',
-    averageTrades: 'Trades moyens',
-    mostActiveDay: 'Jour le plus actif',
-    positiveOutlook: 'La constance est la clé du succès. Continuez à trader régulièrement pour améliorer vos compétences.',
-    contributions: 'jours d\'activité de trading',
-    less: 'Moins',
-    more: 'Plus',
-    currentStreak: 'Série actuelle',
-    longestStreak: 'Plus longue série',
-    totalTradingDays: 'Jours de trading totaux',
-    daysLabel: 'jours',
-    weekLabel: 'Semaine',
-    activityLegend: 'activités de trading',
-    activityIntensity: 'Intensité de l\'activité',
-    weekNumber: (week: number) => `Semaine ${week}`,
-    bookCall: 'Réserver un appel*',
-    visitDashboard: 'Voir le tableau de bord',
-    callDisclaimer: '*Cet appel est 100% gratuit. Profitez-en pour échanger avec un autre trader et réfléchir à votre trading.',
-  },
   en: {
-    preview: 'Your weekly trading statistics - Deltalytix',
+    preview: 'Your weekly trading statistics - Shikuf',
     greeting: 'Hello',
     disclaimer: 'This analysis, performed over the last 14 days by an algorithm, may contain errors.',
     dailyPerformance: 'Daily Performance',
@@ -84,9 +43,9 @@ const translations = {
     losses: 'Losses',
     successRate: 'Success Rate',
     detailedStats: 'View my detailed statistics →',
-    founder: 'Founder of Deltalytix',
+    founder: 'Shikuf team',
     unsubscribe: 'Unsubscribe',
-    sentBy: 'This email was sent to you by Deltalytix',
+    sentBy: 'This email was sent to you by Shikuf',
     weekdays: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
     warmUpMessage: 'I see this week has been challenging. I\'d love to discuss your challenges and help you improve your performance. Let\'s schedule a personalized call.',
     scheduleCall: 'Schedule a call* →',
@@ -281,7 +240,7 @@ function calculateTradingStreak(dailyPnL: TraderStatsEmailProps['dailyPnL']): { 
 }
 
 // Reusable ActionButtons component
-const ActionButtons = ({ t }: { t: typeof translations.fr }) => (
+const ActionButtons = ({ t }: { t: typeof translations.en }) => (
   <Section className="mb-8">
     <table className="w-full border-collapse mb-[20px]">
       <tbody>
@@ -289,7 +248,7 @@ const ActionButtons = ({ t }: { t: typeof translations.fr }) => (
           <td className="w-[50%] pr-[8px]">
             <div className="bg-[#3469DF] rounded-[6px] text-center py-[12px] px-[16px] box-border">
               <Link
-                href="https://cal.com/hugo-demenez/deltalytix-discussion"
+                href="#"
                 className="text-white font-medium no-underline text-[14px]"
               >
                 {t.bookCall}
@@ -299,7 +258,7 @@ const ActionButtons = ({ t }: { t: typeof translations.fr }) => (
           <td className="w-[50%] pl-[8px]">
             <div className="bg-white border border-[#3469DF] rounded-[6px] text-center py-[12px] px-[16px] box-border">
               <Link
-                href="https://deltalytix.app/dashboard"
+                href="https://shikuf.app/dashboard"
                 className="text-[#3469DF] font-medium no-underline text-[14px]"
               >
                 {t.visitDashboard}
@@ -335,12 +294,12 @@ export default function TraderStatsEmail({
   winLossStats,
   resultAnalysisIntro,
   tipsForNextWeek,
-  language = "fr",
+  language = "en",
 }: TraderStatsEmailProps) {
-  const t = translations[language as keyof typeof translations] || translations.fr;
+  const t = translations[language as keyof typeof translations] || translations.en;
 
   const unsubscribeUrl = email
-    ? `https://deltalytix.app/api/email/unsubscribe?email=${encodeURIComponent(email)}`
+    ? `https://shikuf.app/api/email/unsubscribe?email=${encodeURIComponent(email)}`
     : '#';
 
   // Calculate win rate percentage
@@ -584,7 +543,7 @@ export default function TraderStatsEmail({
               )}
 
               <Text className="text-gray-800 mt-8 mb-4">
-                Hugo DEMENEZ
+                Shikuf team
                 <br />
                 <span className="text-gray-600">{t.founder}</span>
               </Text>

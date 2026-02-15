@@ -112,7 +112,7 @@ function NotFoundContent() {
     setLocale(detectedLocale)
 
     // Set page title
-    document.title = 'Deltalytix | ' + translations[detectedLocale].title
+    document.title = 'Shikuf | ' + translations[detectedLocale].title
 
     // Apply theme from localStorage
     const savedTheme = getThemeFromLocalStorage()

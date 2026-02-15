@@ -1,7 +1,7 @@
 export default {
     landing: {
         title: 'Master your trading journey.',
-        description: 'Deltalytix is a trading dashboard for futures traders to store, explore and understand their track-record.',
+        description: 'Shikuf is a personal trading journal to store, explore and understand your track-record.',
         cta: 'Get Started',
         updates: 'Latest Product Updates →',
         partners: {
@@ -223,7 +223,7 @@ export default {
         },
         propfirms: {
             title: 'Prop Firm Catalogue',
-            description: 'Explore prop firms tracked by Deltalytix users. See real statistics on registered accounts and payout performance.',
+            description: 'Explore prop firms tracked by Shikuf users. See real statistics on registered accounts and payout performance.',
             registeredAccounts: 'Registered Accounts',
             accountTemplates: 'Account Templates',
             chart: {
