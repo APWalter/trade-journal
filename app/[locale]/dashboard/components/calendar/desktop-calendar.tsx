@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react"
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, startOfWeek, getDay, endOfWeek, addDays, isSameDay, getYear } from "date-fns"
 import { formatInTimeZone } from 'date-fns-tz'
-import { fr, enUS } from 'date-fns/locale'
+import { enUS } from 'date-fns/locale'
 import { ChevronLeft, ChevronRight, Newspaper, Calendar, CalendarDays } from "lucide-react"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { FinancialEvent } from "@/prisma/generated/prisma/browser"
 import { CalendarModal } from "./daily-modal"
-import { useI18n, useCurrentLocale } from "@/locales/client"
+import { useI18n } from "@/locales/client"
 import { translateWeekday } from "@/lib/translation-utils"
 import { WeeklyModal } from "./weekly-modal"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -296,11 +296,10 @@ export default function CalendarPnl({ calendarData, hideFiltersOnMobile = false 
   const accounts = useUserStore(state => state.accounts)
   const groups = useUserStore(state => state.groups)
   const t = useI18n()
-  const locale = useCurrentLocale()
   const timezone = useUserStore(state => state.timezone)
   const userFinancialEvents = useFinancialEventsStore(state => state.events)
-  const dateLocale = locale === 'fr' ? fr : enUS
-  const weekStartsOnMonday = locale === 'fr'
+  const dateLocale = enUS
+  const weekStartsOnMonday = false
   const WEEKDAYS = weekStartsOnMonday ? WEEKDAYS_MONDAY_START : WEEKDAYS_SUNDAY_START
   const [currentDate, setCurrentDate] = useState(new Date())
   const [isLoading, setIsLoading] = useState(false)
@@ -341,11 +340,11 @@ export default function CalendarPnl({ calendarData, hideFiltersOnMobile = false 
 
     const filteredEvents = userFinancialEvents.filter(event => {
       const eventDate = new Date(event.date)
-      return eventDate >= monthStart && eventDate <= monthEnd && event.lang === locale
+      return eventDate >= monthStart && eventDate <= monthEnd && event.lang === 'en'
     })
 
     setMonthEvents(filteredEvents)
-  }, [currentDate, userFinancialEvents, locale])
+  }, [currentDate, userFinancialEvents])
 
   const handlePrevMonth = React.useCallback(() => {
     setCurrentDate(subMonths(currentDate, 1))

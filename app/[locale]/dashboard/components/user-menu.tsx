@@ -38,11 +38,8 @@ import {
   Settings,
   Building2,
 } from 'lucide-react'
-import { SubscriptionBadge } from './subscription-badge'
 import { signOut } from '@/server/auth'
 import { useMemo } from 'react'
-
-type Locale = 'en' | 'fr'
 
 const timezones = [
   'UTC',
@@ -65,10 +62,6 @@ export default function UserMenu() {
   const timezone = useUserStore(state => state.timezone)
   const setTimezone = useUserStore(state => state.setTimezone)
 
-  const languages: { value: Locale; label: string }[] = useMemo(() => ([
-    { value: 'en', label: 'English' },
-    { value: 'fr', label: 'Français' },
-  ]), [])
 
   const handleThemeChange = (value: string) => {
     setTheme(value as 'light' | 'dark' | 'system')
@@ -95,7 +88,6 @@ export default function UserMenu() {
                 {user?.email![0]}
               </AvatarFallback>
             </Avatar>
-            <SubscriptionBadge className="absolute -bottom-1 -right-1 px-1 py-0 text-[10px] leading-3" />
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-56">
@@ -194,31 +186,6 @@ export default function UserMenu() {
                     {intensity}%
                   </div>
                 </div>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger>
-              <Globe className="mr-2 h-4 w-4" />
-              <span>{t('dashboard.language')}</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <ScrollArea className="h-[64px]">
-                  <DropdownMenuRadioGroup value={currentLocale}>
-                    {languages.map((lang) => (
-                      <DropdownMenuRadioItem
-                        key={lang.value}
-                        value={lang.value}
-                        onClick={() => {
-                          changeLocale(lang.value)
-                        }}
-                      >
-                        {lang.label}
-                      </DropdownMenuRadioItem>
-                    ))}
-                  </DropdownMenuRadioGroup>
-                </ScrollArea>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>

@@ -1,4 +1,11 @@
 'use client'
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+  }
+}
+
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import {

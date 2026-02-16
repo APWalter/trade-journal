@@ -32,7 +32,6 @@ import {
 } from "lucide-react"
 import { signOut, setPasswordAction } from "@/server/auth"
 import Link from 'next/link'
-import { useChangeLocale, useCurrentLocale } from "@/locales/client"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   DropdownMenu,
@@ -45,7 +44,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Slider } from "@/components/ui/slider"
-import { createTeam, joinTeam, leaveTeam, getUserTeams } from './actions'
 import { toast } from "sonner"
 import {
   AlertDialog,
@@ -58,10 +56,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { LinkedAccounts } from "@/components/linked-accounts"
-
-type Locale = 'en' | 'fr'
-
 // Add timezone list
 const timezones = [
   'UTC',
@@ -77,8 +71,6 @@ const timezones = [
 
 export default function SettingsPage() {
   const t = useI18n()
-  const changeLocale = useChangeLocale()
-  const currentLocale = useCurrentLocale()
   const { theme, setTheme, intensity, setIntensity } = useTheme()
   const user = useUserStore(state => state.supabaseUser)
   const timezone = useUserStore(state => state.timezone)
@@ -93,17 +85,6 @@ export default function SettingsPage() {
   const [showNewPassword, setShowNewPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   
-  // Team state
-  const [userTeams, setUserTeams] = useState<{
-    ownedTeams: any[]
-    joinedTeams: any[]
-  }>({ ownedTeams: [], joinedTeams: [] })
-
-  const languages: { value: Locale; label: string }[] = [
-    { value: 'en', label: 'English' },
-    { value: 'fr', label: 'Français' },
-  ]
-
   const handleThemeChange = (value: string) => {
     setTheme(value as "light" | "dark" | "system")
   }
@@ -117,39 +98,6 @@ export default function SettingsPage() {
     }
     return <Laptop className="h-4 w-4" />;
   };
-
-  // Load user teams on component mount
-  useEffect(() => {
-    const loadTeams = async () => {
-      const result = await getUserTeams()
-      if (result.success && result.ownedTeams && result.joinedTeams) {
-        setUserTeams({
-          ownedTeams: result.ownedTeams,
-          joinedTeams: result.joinedTeams,
-        })
-      }
-    }
-    loadTeams()
-  }, [])
-
-
-
-  const handleLeaveTeam = async (teamId: string) => {
-    const result = await leaveTeam(teamId)
-    if (result.success) {
-      toast.success(t('dashboard.teams.leaveSuccess'))
-      // Reload teams
-      const updatedTeams = await getUserTeams()
-      if (updatedTeams.success && updatedTeams.ownedTeams && updatedTeams.joinedTeams) {
-        setUserTeams({
-          ownedTeams: updatedTeams.ownedTeams,
-          joinedTeams: updatedTeams.joinedTeams,
-        })
-      }
-    } else {
-      toast.error(result.error || t('dashboard.teams.error'))
-    }
-  }
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -268,37 +216,6 @@ export default function SettingsPage() {
 
             <Separator />
 
-            {/* Language Settings */}
-            <div>
-              <Label className="text-base font-medium flex items-center gap-2">
-                <Globe className="h-4 w-4" />
-                Language
-              </Label>
-              <div className="mt-2">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-[200px] justify-start">
-                      <Globe className="mr-2 h-4 w-4" />
-                      {languages.find(lang => lang.value === currentLocale)?.label}
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuRadioGroup value={currentLocale}>
-                      {languages.map((lang) => (
-                        <DropdownMenuRadioItem 
-                          key={lang.value} 
-                          value={lang.value}
-                          onClick={() => changeLocale(lang.value)}
-                        >
-                          {lang.label}
-                        </DropdownMenuRadioItem>
-                      ))}
-                    </DropdownMenuRadioGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-            </div>
-
             <Separator />
 
             {/* Timezone Settings */}
@@ -401,109 +318,6 @@ export default function SettingsPage() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Team Section */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Building2 className="h-5 w-5" />
-              Team
-            </CardTitle>
-            <CardDescription>
-              Manage your team connections
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-
-            {/* Current Teams */}
-            {(userTeams.ownedTeams.length > 0 || userTeams.joinedTeams.length > 0) && (
-              <div>
-                <Label className="text-base font-medium">Current Teams</Label>
-                <div className="mt-2 space-y-2">
-                  {/* Owned Teams */}
-                  {userTeams.ownedTeams.map((team) => (
-                    <div key={team.id} className="flex items-center justify-between p-3 border rounded-lg">
-                      <div>
-                        <p className="font-medium">{team.name}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {team.traderIds.length} traders
-                        </p>
-                      </div>
-                      <Badge variant="secondary">Owner</Badge>
-                    </div>
-                  ))}
-                  
-                  {/* Joined Teams */}
-                  {userTeams.joinedTeams.map((team) => (
-                    <div key={team.id} className="flex items-center justify-between p-3 border rounded-lg">
-                      <div>
-                        <p className="font-medium">{team.name}</p>
-                        <p className="text-sm text-muted-foreground">
-                          {team.traderIds.length} traders
-                        </p>
-                      </div>
-                      <AlertDialog>
-                        <AlertDialogTrigger asChild>
-                          <Button variant="outline" size="sm">
-                            Leave Team
-                          </Button>
-                        </AlertDialogTrigger>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>Leave Team</AlertDialogTitle>
-                            <AlertDialogDescription>
-                              Are you sure you want to leave this team?
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
-                            <AlertDialogAction
-                              onClick={() => handleLeaveTeam(team.id)}
-                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                            >
-                              Leave Team
-                            </AlertDialogAction>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* No Teams */}
-            {userTeams.ownedTeams.length === 0 && userTeams.joinedTeams.length === 0 && (
-              <div className="text-center py-8 text-muted-foreground">
-                <p>No team linked</p>
-                <p className="text-sm mt-2">Contact your team administrator to get an invitation to join a team.</p>
-                <div className="mt-4">
-                  <Link href="/teams/dashboard">
-                    <Button>
-                      <Building2 className="mr-2 h-4 w-4" />
-                      Manage Teams
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            )}
-
-            {/* Team Management Link */}
-            {(userTeams.ownedTeams.length > 0 || userTeams.joinedTeams.length > 0) && (
-              <div className="mt-4">
-                <Link href="/teams/dashboard">
-                  <Button variant="outline" className="w-full">
-                    <Settings className="mr-2 h-4 w-4" />
-                    Manage Teams
-                  </Button>
-                </Link>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-
-        {/* Linked Accounts Section */}
-        <LinkedAccounts />
 
         {/* Password (Migration) Section */}
         <Card>

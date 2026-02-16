@@ -35,9 +35,8 @@ import { WidgetSize } from "@/app/[locale]/dashboard/types/dashboard";
 import { useI18n } from "@/locales/client";
 import { usePnLPerContractDailyStore } from "@/store/pnl-per-contract-daily-store";
 import { formatInTimeZone } from "date-fns-tz";
-import { fr, enUS } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import { useUserStore } from "@/store/user-store";
-import { useCurrentLocale } from "@/locales/client";
 import { Button } from "@/components/ui/button";
 
 interface PnLPerContractDailyChartProps {
@@ -113,8 +112,7 @@ export default function PnLPerContractDailyChart({
   const { timezone } = useUserStore();
   const { config, setSelectedInstrument } = usePnLPerContractDailyStore();
   const t = useI18n();
-  const locale = useCurrentLocale();
-  const dateLocale = locale === "fr" ? fr : enUS;
+  const dateLocale = enUS;
 
   // Get unique instruments from trades
   const availableInstruments = React.useMemo(() => {

@@ -24,10 +24,6 @@ import { FormatPreview } from "./components/format-preview";
 import { cn } from "@/lib/utils";
 import { useUserStore } from "@/store/user-store";
 import { useTradesStore } from "@/store/trades-store";
-import { usePdfProcessingStore } from "@/store/pdf-processing-store";
-import PdfUpload from "./ibkr-pdf/pdf-upload";
-import PdfProcessing from "./ibkr-pdf/pdf-processing";
-import AtasFileUpload from "./atas/atas-file-upload";
 import { generateTradeHash } from "@/lib/utils";
 import { createTradeWithDefaults } from "@/lib/trade-factory";
 
@@ -84,15 +80,7 @@ export default function ImportButton() {
 
     setIsSaving(true);
     try {
-      // Filter trades for ATAS based on selectedAccountNumbers
       let tradesToSave = processedTrades;
-      if (importType === "atas" && selectedAccountNumbers.length > 0) {
-        tradesToSave = processedTrades.filter(
-          (trade) =>
-            trade.accountNumber &&
-            selectedAccountNumbers.includes(trade.accountNumber)
-        );
-      }
 
       let newTrades: Trade[] = [];
       // If accountNumbers is empty, we should just save processedTrades with the accountNumber from the processedTrades
@@ -189,19 +177,6 @@ export default function ImportButton() {
     const currentStepIndex = platform.steps.findIndex((s) => s.id === step);
     if (currentStepIndex === -1) return;
 
-    // Handle PDF upload step
-    if (step === "upload-file" && importType === "pdf") {
-      if (files.length === 0) {
-        setError(t("import.errors.noFilesSelected"));
-        return;
-      }
-      setStep("process-file");
-      return;
-    }
-
-    // Handle ATAS account selection step - filtering is now done in handleSave
-    // No need to filter here since state updates are async and handleSave will filter
-
     // Handle standard flow
     const nextStep = platform.steps[currentStepIndex + 1];
     if (!nextStep) {
@@ -250,24 +225,7 @@ export default function ImportButton() {
         </div>
       );
     }
-    if (Component === PdfUpload) {
-      return <Component setText={setText} setFiles={setFiles} />;
-    }
-
     if (Component === FileUpload) {
-      return (
-        <Component
-          importType={importType}
-          setRawCsvData={setRawCsvData}
-          setCsvData={setCsvData}
-          setHeaders={setHeaders}
-          setStep={setStep}
-          setError={setError}
-        />
-      );
-    }
-
-    if (Component === AtasFileUpload) {
       return (
         <Component
           importType={importType}
@@ -333,19 +291,6 @@ export default function ImportButton() {
       );
     }
 
-    if (Component === PdfProcessing) {
-      return (
-        <Component
-          setError={setError}
-          setStep={setStep}
-          processedTrades={processedTrades}
-          setProcessedTrades={setProcessedTrades}
-          extractedText={text}
-          userId={user?.id || ""}
-        />
-      );
-    }
-
     // Handle processor components - only if the current step component is the processor
     if (
       platform.processorComponent &&
@@ -387,31 +332,11 @@ export default function ImportButton() {
     if (currentStep.component === FileUpload && csvData.length === 0)
       return true;
 
-    // PDF upload step
-    if (currentStep.component === PdfUpload && text.length === 0) return true;
-
-    // Account selection for Tradovate
-    if (
-      currentStep.component === AccountSelection &&
-      importType === "tradovate" &&
-      accountNumbers.length === 0 &&
-      !newAccountNumber
-    )
-      return true;
-
     // Account selection for other platforms
     if (
       currentStep.component === AccountSelection &&
       accountNumbers.length === 0 &&
       !newAccountNumber
-    )
-      return true;
-
-    // Account selection for ATAS (now handled in processor)
-    if (
-      importType === "atas" &&
-      currentStep.component === platform.processorComponent &&
-      selectedAccountNumbers.length === 0
     )
       return true;
 

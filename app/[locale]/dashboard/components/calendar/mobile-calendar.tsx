@@ -3,14 +3,14 @@
 import React, { useState } from "react"
 import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, getDay, addDays } from "date-fns"
 import { formatInTimeZone, toDate } from 'date-fns-tz'
-import { fr, enUS } from 'date-fns/locale'
+import { enUS } from 'date-fns/locale'
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { CalendarModal } from "./daily-modal"
 import { CalendarData } from "@/app/[locale]/dashboard/types/calendar"
 import { Card, CardTitle } from "@/components/ui/card"
-import { useI18n, useCurrentLocale } from "@/locales/client"
+import { useI18n } from "@/locales/client"
 import { useUserStore } from "../../../../../store/user-store"
 
 function formatCurrency(value: number): string {
@@ -62,10 +62,9 @@ function isDateStringToday(dateString: string, timezone: string): boolean {
 
 export default function MobileCalendarPnl({ calendarData }: { calendarData: CalendarData }) {
   const t = useI18n()
-  const locale = useCurrentLocale()
   const timezone = useUserStore(state => state.timezone)
-  const dateLocale = locale === 'fr' ? fr : enUS
-  const weekStartsOnMonday = locale === 'fr'
+  const dateLocale = enUS
+  const weekStartsOnMonday = false
   const [currentDate, setCurrentDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [isLoading, setIsLoading] = useState(false)

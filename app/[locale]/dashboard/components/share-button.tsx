@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-import { useI18n, useCurrentLocale } from "@/locales/client"
+import { useI18n } from "@/locales/client"
 import { addDays, startOfDay, endOfDay, format } from "date-fns"
 import { createShared } from "@/server/shared"
 import { toast } from "sonner"
@@ -37,7 +37,6 @@ import { Input } from "@/components/ui/input"
 import { SharedLayoutsManager } from "./shared-layouts-manager"
 import { cn } from "@/lib/utils"
 import confetti from 'canvas-confetti'
-import { fr } from 'date-fns/locale'
 import { Switch } from "@/components/ui/switch"
 import { useTradesStore } from "../../../../store/trades-store"
 import { useUserStore } from "../../../../store/user-store"
@@ -113,8 +112,6 @@ function triggerConfetti() {
 export const ShareButton = forwardRef<HTMLButtonElement, ShareButtonProps>(
   ({ variant = "ghost", size = "icon", currentLayout }, ref) => {
     const t = useI18n()
-    const locale = useCurrentLocale()
-    const dateLocale = locale === 'fr' ? fr : undefined
     const isMobile = useIsMobile()
     const user = useUserStore(state => state.user)
     const trades = useTradesStore(state => state.trades)
@@ -562,7 +559,7 @@ export const ShareButton = forwardRef<HTMLButtonElement, ShareButtonProps>(
                                 className="w-full [&_.rdp-nav]:p-0 [&_.rdp-caption]:p-2 [&_.rdp-months]:p-2 pt-0"
                                 showOutsideDays
                                 fixedWeeks
-                                locale={dateLocale}
+                
                               />
                             </div>
                           </div>
@@ -588,7 +585,7 @@ export const ShareButton = forwardRef<HTMLButtonElement, ShareButtonProps>(
                                 className="w-full [&_.rdp-nav]:p-0 [&_.rdp-caption]:p-2 [&_.rdp-months]:p-2 pt-0"
                                 showOutsideDays
                                 fixedWeeks
-                                locale={dateLocale}
+
                               />
                             </div>
                           </div>

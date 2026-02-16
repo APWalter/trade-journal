@@ -23,9 +23,9 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { useI18n, useCurrentLocale } from "@/locales/client";
+import { useI18n } from "@/locales/client";
 import { formatInTimeZone } from "date-fns-tz";
-import { fr, enUS } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import { useUserStore } from "@/store/user-store";
 
 interface PNLChartProps {
@@ -70,9 +70,8 @@ const negativeColor = "hsl(var(--chart-loss))"; // Orangish color
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
   const t = useI18n();
-  const locale = useCurrentLocale();
   const { timezone } = useUserStore();
-  const dateLocale = locale === "fr" ? fr : enUS;
+  const dateLocale = enUS;
 
   if (active && payload && payload.length) {
     const data = payload[0].payload;
@@ -104,9 +103,8 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps) => {
 export default function PNLChart({ size = "medium" }: PNLChartProps) {
   const { calendarData } = useData();
   const t = useI18n();
-  const locale = useCurrentLocale();
   const { timezone } = useUserStore();
-  const dateLocale = locale === "fr" ? fr : enUS;
+  const dateLocale = enUS;
 
   const chartData = React.useMemo(
     () =>

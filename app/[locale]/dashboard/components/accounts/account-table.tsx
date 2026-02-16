@@ -3,11 +3,11 @@
 import { format } from "date-fns"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
-import { useI18n, useCurrentLocale } from "@/locales/client"
+import { useI18n } from "@/locales/client"
 import { Badge } from "@/components/ui/badge"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { fr, enUS } from 'date-fns/locale'
+import { enUS } from 'date-fns/locale'
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 
 interface DailyMetric {
@@ -48,8 +48,7 @@ export function AccountTable({
   onEditPayout
 }: AccountTableProps) {
   const t = useI18n()
-  const locale = useCurrentLocale()
-  const dateLocale = locale === 'fr' ? fr : enUS
+  const dateLocale = enUS
 
   // Helper function to safely calculate percentage of target
   const calculatePercentageOfTarget = (runningBalance: number, startingBalance: number, profitTarget: number) => {

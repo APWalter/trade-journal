@@ -6,7 +6,7 @@ import { useData } from "@/context/data-provider"
 import { Clock, PiggyBank, Award, BarChart, Info } from "lucide-react"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { cn, calculateStatistics } from "@/lib/utils"
-import { useI18n, useCurrentLocale } from "@/locales/client"
+import { useI18n } from "@/locales/client"
 import { Progress } from "@/components/ui/progress"
 import { CalendarEntry } from "@/app/[locale]/dashboard/types/calendar"
 import { Trade } from "@/prisma/generated/prisma/browser"
@@ -31,21 +31,15 @@ export default function StatisticsWidget({ size = 'medium', dayData }: Statistic
   const cardRef = React.useRef<HTMLDivElement>(null)
   const lastTouchTime = React.useRef(0)
   const t = useI18n()
-  const locale = useCurrentLocale()
 
-  // Number formatter for currency with thousands separators based on locale
+  // Number formatter for currency with thousands separators
   const formatCurrency = (value: number) => {
-    const formatted = new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
+    const formatted = new Intl.NumberFormat('en-US', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(value)
-    
-    // Always use $ symbol with proper spacing for French
-    if (locale === 'fr') {
-      return `${formatted} $`
-    } else {
-      return `$${formatted}`
-    }
+
+    return `$${formatted}`
   }
 
   // Calculate statistics - either for a specific day or for all data

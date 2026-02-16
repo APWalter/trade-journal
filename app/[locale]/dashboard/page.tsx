@@ -7,23 +7,11 @@ import { AnalysisOverview } from "./components/analysis/analysis-overview";
 import WidgetCanvas from "./components/widget-canvas";
 import { useEffect, useRef } from "react";
 import { useI18n } from "@/locales/client";
-import { useSearchParams } from "next/navigation";
-import { clearReferralCode } from "@/lib/referral-storage";
 
 export default function Home() {
   const t = useI18n();
   const mainRef = useRef<HTMLElement>(null);
   const tabsListRef = useRef<HTMLDivElement>(null);
-  const searchParams = useSearchParams();
-
-  // Clear referral code after successful subscription
-  useEffect(() => {
-    const success = searchParams.get("success");
-    if (success === "true") {
-      // Clear referral code from localStorage after successful subscription
-      clearReferralCode();
-    }
-  }, [searchParams]);
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;

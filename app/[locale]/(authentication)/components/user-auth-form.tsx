@@ -1,6 +1,6 @@
 "use client"
 
-import { signInWithDiscord, signInWithEmail, verifyOtp, signInWithGoogle, signInWithPasswordAction } from "@/server/auth"
+import { signInWithEmail, verifyOtp, signInWithPasswordAction } from "@/server/auth"
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
@@ -30,7 +30,6 @@ import {
 } from "@/components/ui/input-otp"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-// Link removed; unauthenticated users can't reach settings
 import { useAuthPreferenceStore } from "@/store/auth-preference-store"
 
 const formSchema = z.object({
@@ -47,16 +46,12 @@ const otpFormSchema = z.object({
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-type AuthMethod = 'email' | 'discord' | 'google' | null
+type AuthMethod = 'email' | null
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const [isLoading, setIsLoading] = React.useState<boolean>(false)
     const [isEmailSent, setIsEmailSent] = React.useState<boolean>(false)
     const [countdown, setCountdown] = React.useState<number>(0)
-    const [isSubscription, setIsSubscription] = React.useState<boolean>(false)
-    const [lookupKey, setLookupKey] = React.useState<string | null>(null)
-    const [referralCode, setReferralCode] = React.useState<string | null>(null)
-    const [promoCode, setPromoCode] = React.useState<string | null>(null)
     const [authMethod, setAuthMethod] = React.useState<AuthMethod>(null)
     const [showOtpInput, setShowOtpInput] = React.useState<boolean>(false)
     const [nextUrl, setNextUrl] = React.useState<string | null>(null)
@@ -68,31 +63,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
     React.useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search)
-        const subscription = urlParams.get('subscription')
         const next = urlParams.get('next')
-        const referral = urlParams.get('referral')
-        const promo_code = urlParams.get('promo_code')
-        setIsSubscription(subscription === 'true')
-        const lookup_key = urlParams.get('lookup_key')
-        setLookupKey(lookup_key)
         setNextUrl(next)
-        
-        // Get promo code from URL
-        if (promo_code) {
-            setPromoCode(promo_code)
-        }
-        
-        // Get referral code from URL or localStorage
-        if (referral) {
-            setReferralCode(referral)
-        } else {
-            import('@/lib/referral-storage').then(({ getReferralCode }) => {
-                const storedRef = getReferralCode()
-                if (storedRef) {
-                    setReferralCode(storedRef)
-                }
-            })
-        }
     }, [])
 
     React.useEffect(() => {
@@ -119,16 +91,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
     async function onSubmitEmail(values: z.infer<typeof formSchema>) {
         if (countdown > 0) return
-        
+
         setIsLoading(true)
         setAuthMethod('email')
         try {
-            const referralParam = referralCode ? `&referral=${encodeURIComponent(referralCode)}` : '';
-            const promoParam = promoCode ? `&promo_code=${encodeURIComponent(promoCode)}` : '';
-            const next = isSubscription 
-                ? `api/stripe/create-checkout-session?lookup_key=${lookupKey}${referralParam}${promoParam}` 
-                : nextUrl;
-            await signInWithEmail(values.email, next, locale)
+            await signInWithEmail(values.email, nextUrl, locale)
             setIsEmailSent(true)
             setShowOtpInput(true)
             setCountdown(15)
@@ -149,7 +116,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         const errorMessage = error.message.toLowerCase()
 
         // Password validation errors
-        if (errorMessage.includes('password should contain') || 
+        if (errorMessage.includes('password should contain') ||
             errorMessage.includes('password must contain') ||
             errorMessage.includes('password requirements')) {
             return {
@@ -210,7 +177,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         }
 
         // Account exists but no password set (created via magic link)
-        // Password reset email has been sent
         if (errorMessage.includes('account_exists_no_password') ||
             errorMessage.includes('doesn\'t have a password set') ||
             errorMessage.includes('password reset email has been sent')) {
@@ -238,7 +204,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         } catch (error) {
             console.error(error)
             const parsedError = parseAuthError(error)
-            
+
             // Set form field error if applicable
             if (parsedError.field === 'password') {
                 form.setError('password', {
@@ -251,7 +217,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     message: parsedError.message
                 })
             }
-            
+
             // Show toast with user-friendly message
             toast.error(t('error'), {
                 description: parsedError.message,
@@ -261,8 +227,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             setIsLoading(false)
         }
     }
-
-    // Signup handled via magic link; no password signup flow here
 
     async function onSubmitOtp(values: z.infer<typeof otpFormSchema>) {
         setIsLoading(true)
@@ -284,44 +248,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         }
     }
 
-    async function onSubmitDiscord(event: React.SyntheticEvent) {
-        event.preventDefault()
-        setIsLoading(true)
-        setAuthMethod('discord')
-
-        try {
-            const referralParam = referralCode ? `&referral=${encodeURIComponent(referralCode)}` : '';
-            const promoParam = promoCode ? `&promo_code=${encodeURIComponent(promoCode)}` : '';
-            const next = isSubscription 
-                ? `api/stripe/create-checkout-session?lookup_key=${lookupKey}${referralParam}${promoParam}` 
-                : nextUrl;
-            await signInWithDiscord(next, locale)
-        } catch (error) {
-            console.error(error)
-            setAuthMethod(null)
-            setIsLoading(false)
-        }
-    }
-
-    async function onSubmitGoogle(event: React.SyntheticEvent) {
-        event.preventDefault()
-        setIsLoading(true)
-        setAuthMethod('google')
-
-        try {
-            const referralParam = referralCode ? `&referral=${encodeURIComponent(referralCode)}` : '';
-            const promoParam = promoCode ? `&promo_code=${encodeURIComponent(promoCode)}` : '';
-            const next = isSubscription 
-                ? `api/stripe/create-checkout-session?lookup_key=${lookupKey}${referralParam}${promoParam}` 
-                : nextUrl;
-            await signInWithGoogle(next, locale)
-        } catch (error) {
-            console.error(error)
-            setAuthMethod(null)
-            setIsLoading(false)
-        }
-    }
-
     function openMailClient() {
         const email = form.getValues('email')
         const domain = email.split('@')[1]?.toLowerCase()
@@ -329,22 +255,22 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         if (domain?.includes('gmail.com')) {
             window.open('https://mail.google.com', '_blank', 'noopener,noreferrer')
         } else if (
-            domain?.includes('outlook.com') || 
-            domain?.includes('hotmail.com') || 
+            domain?.includes('outlook.com') ||
+            domain?.includes('hotmail.com') ||
             domain?.includes('live.com') ||
             domain?.includes('msn.com') ||
             domain?.includes('office365.com')
         ) {
             window.open('https://outlook.live.com', '_blank', 'noopener,noreferrer')
         } else if (
-            domain?.includes('proton.me') || 
-            domain?.includes('protonmail.com') || 
+            domain?.includes('proton.me') ||
+            domain?.includes('protonmail.com') ||
             domain?.includes('pm.me')
         ) {
             window.open('https://mail.proton.me', '_blank', 'noopener,noreferrer')
         } else if (
-            domain?.includes('icloud.com') || 
-            domain?.includes('me.com') || 
+            domain?.includes('icloud.com') ||
+            domain?.includes('me.com') ||
             domain?.includes('mac.com')
         ) {
             window.open('https://www.icloud.com/mail', '_blank', 'noopener,noreferrer')
@@ -376,7 +302,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             {t('auth.new')}
                         </Badge>
                     </TabsTrigger>
-                    {/* Signup tab removed: handled by Magic Link */}
                 </TabsList>
 
                 <TabsContent value="magic">
@@ -396,7 +321,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                                         autoCapitalize="none"
                                         autoComplete="email"
                                         autoCorrect="off"
-                                        disabled={isLoading || (isEmailSent || authMethod === 'discord' || authMethod === 'google')}
+                                        disabled={isLoading || isEmailSent}
                                         {...field}
                                     />
                                 </FormControl>
@@ -405,8 +330,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                         )}
                     />
                     {!isEmailSent ? (
-                            <Button 
-                                disabled={isLoading || countdown > 0 || authMethod === 'discord' || authMethod === 'google'}
+                            <Button
+                                disabled={isLoading || countdown > 0}
                                 type="submit"
                             >
                                 {isLoading && authMethod === 'email' && (
@@ -416,12 +341,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                             </Button>
                         ) : (
                             <div className="space-y-2">
-                                <Button 
-                                    type="button" 
-                                    variant="outline" 
+                                <Button
+                                    type="button"
+                                    variant="outline"
                                     className="w-full"
                                     onClick={openMailClient}
-                                    disabled={authMethod === 'discord' || authMethod === 'google'}
                                 >
                                     <Icons.envelope className="mr-2 h-4 w-4" />
                                     {t('auth.openMailbox')}
@@ -430,7 +354,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                                     type="submit"
                                     variant="ghost"
                                     className="w-full"
-                                    disabled={countdown > 0 || authMethod === 'discord' || authMethod === 'google'}
+                                    disabled={countdown > 0}
                                 >
                                     {countdown > 0 ? (
                                         `${t('auth.resendIn')} ${countdown}s`
@@ -477,8 +401,8 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                                 </FormItem>
                             )}
                         />
-                        <Button 
-                            type="submit" 
+                        <Button
+                            type="submit"
                             className="w-full"
                             disabled={isLoading}
                         >
@@ -490,7 +414,6 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                     </form>
                 </Form>
             )}
-            {/* Hint removed: settings not accessible unauthenticated */}
                 </TabsContent>
 
                 <TabsContent value="password">
@@ -547,46 +470,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
                 </form>
                 </Form>
                 </TabsContent>
-
-                {/* Signup content removed */}
             </Tabs>
-
-            <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">
-                        {t('auth.continueWith')}
-                    </span>
-                </div>
-            </div>
-            <Button 
-                variant="outline" 
-                type="button" 
-                disabled={isLoading || authMethod === 'email'} 
-                onClick={onSubmitDiscord}
-            >
-                {isLoading && authMethod === 'discord' ? (
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                    <Icons.discord className="mr-2 h-4 w-4" />
-                )}{" "}
-                {t('auth.signInWithDiscord')}
-            </Button>
-            <Button 
-                variant="outline" 
-                type="button" 
-                disabled={isLoading || authMethod === 'email'} 
-                onClick={onSubmitGoogle}
-            >
-                {isLoading && authMethod === 'google' ? (
-                    <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                    <Icons.google className="mr-2 h-4 w-4" />
-                )}{" "}
-                {t('auth.signInWithGoogle')}
-            </Button>
         </div>
     )
 }

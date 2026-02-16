@@ -3,7 +3,6 @@ import { DataProvider } from "@/context/data-provider";
 import Modals from "@/components/modals";
 import Navbar from "./components/navbar";
 import { SyncContextProvider } from "@/context/sync-context";
-import { RithmicSyncNotifications } from "./components/import/rithmic/sync/rithmic-notifications";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -17,7 +16,6 @@ export default async function RootLayout({
       <ThemeProvider>
         <DataProvider>
           <SyncContextProvider>
-            <RithmicSyncNotifications />
             <Toaster />
             <Navbar />
             {children}

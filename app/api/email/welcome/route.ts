@@ -56,7 +56,7 @@ export async function POST(req: Request) {
       from: 'Shikuf <welcome@shikuf.app>',
       to: record.email,
       subject: 'Welcome to Shikuf',
-      react: WelcomeEmail({ firstName, email: record.email, language: 'en', youtubeId: 'ZBrIZpCh_7Q' }),
+      react: WelcomeEmail({ firstName, email: record.email, youtubeId: 'ZBrIZpCh_7Q' }),
       replyTo: 'aryehwalter@gmail.com',
       headers: {
         'List-Unsubscribe': `<${unsubscribeUrl}>`,

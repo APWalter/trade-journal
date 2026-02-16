@@ -635,10 +635,6 @@ export const DataProvider: React.FC<{
         setEvents(data.financialEvents);
         setTickDetails(data.tickDetails);
         setIsFirstConnection(data.userData?.isFirstConnection || false);
-
-        if (includeStripe) {
-          await loadStripeSubscription();
-        }
       } catch (error) {
         console.error("Error refreshing user data:", error);
       } finally {
@@ -656,7 +652,6 @@ export const DataProvider: React.FC<{
       setEvents,
       setTickDetails,
       setIsFirstConnection,
-      loadStripeSubscription,
     ]
   );
 

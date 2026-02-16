@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { format } from "date-fns";
-import { fr, enUS } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import {
   Dialog,
   DialogContent,
@@ -24,7 +24,7 @@ import { cn, parsePositionTime } from "@/lib/utils";
 import { Trade } from "@/prisma/generated/prisma/browser";
 import { CalendarEntry } from "@/app/[locale]/dashboard/types/calendar";
 import { Charts } from "./charts";
-import { useI18n, useCurrentLocale } from "@/locales/client";
+import { useI18n } from "@/locales/client";
 import { DailyStats } from "./daily-stats";
 import { DailyComment } from "./daily-comment";
 import { useUserStore } from "../../../../../store/user-store";
@@ -62,9 +62,8 @@ export function CalendarModal({
   isLoading,
 }: CalendarModalProps) {
   const t = useI18n();
-  const locale = useCurrentLocale();
   const timezone = useUserStore((state) => state.timezone);
-  const dateLocale = locale === "fr" ? fr : enUS;
+  const dateLocale = enUS;
   const [activeTab, setActiveTab] = useState("comment");
   const [formattedDate, setFormattedDate] = useState<string>("");
 

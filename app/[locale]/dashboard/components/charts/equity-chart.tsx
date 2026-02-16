@@ -19,7 +19,7 @@ import {
   endOfDay,
 } from "date-fns";
 import { formatInTimeZone } from "date-fns-tz";
-import { fr, enUS } from "date-fns/locale";
+import { enUS } from "date-fns/locale";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { WidgetSize } from "@/app/[locale]/dashboard/types/dashboard";
@@ -44,7 +44,6 @@ import { Info } from "lucide-react";
 
 import { useData } from "@/context/data-provider";
 import { useI18n } from "@/locales/client";
-import { useCurrentLocale } from "@/locales/client";
 import { useUserStore } from "@/store/user-store";
 import { useEquityChartStore } from "@/store/equity-chart-store";
 import { Payout as PrismaPayout } from "@/prisma/generated/prisma/browser";
@@ -627,8 +626,7 @@ export default function EquityChart({ size = "medium" }: EquityChartProps) {
   );
   const yAxisRef = React.useRef<any>(null);
   const t = useI18n();
-  const locale = useCurrentLocale();
-  const dateLocale = locale === "fr" ? fr : enUS;
+  const dateLocale = enUS;
 
   // Account selection handlers
   const handleToggleAccount = React.useCallback(
