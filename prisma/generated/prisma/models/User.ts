@@ -29,10 +29,7 @@ export type UserMinAggregateOutputType = {
   email: string | null
   auth_user_id: string | null
   isFirstConnection: boolean | null
-  etpToken: string | null
-  isBeta: boolean | null
   language: string | null
-  thorToken: string | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -40,10 +37,7 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   auth_user_id: string | null
   isFirstConnection: boolean | null
-  etpToken: string | null
-  isBeta: boolean | null
   language: string | null
-  thorToken: string | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -51,10 +45,7 @@ export type UserCountAggregateOutputType = {
   email: number
   auth_user_id: number
   isFirstConnection: number
-  etpToken: number
-  isBeta: number
   language: number
-  thorToken: number
   _all: number
 }
 
@@ -64,10 +55,7 @@ export type UserMinAggregateInputType = {
   email?: true
   auth_user_id?: true
   isFirstConnection?: true
-  etpToken?: true
-  isBeta?: true
   language?: true
-  thorToken?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -75,10 +63,7 @@ export type UserMaxAggregateInputType = {
   email?: true
   auth_user_id?: true
   isFirstConnection?: true
-  etpToken?: true
-  isBeta?: true
   language?: true
-  thorToken?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -86,10 +71,7 @@ export type UserCountAggregateInputType = {
   email?: true
   auth_user_id?: true
   isFirstConnection?: true
-  etpToken?: true
-  isBeta?: true
   language?: true
-  thorToken?: true
   _all?: true
 }
 
@@ -170,10 +152,7 @@ export type UserGroupByOutputType = {
   email: string
   auth_user_id: string
   isFirstConnection: boolean
-  etpToken: string | null
-  isBeta: boolean
   language: string
-  thorToken: string | null
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
@@ -202,27 +181,14 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   auth_user_id?: Prisma.StringFilter<"User"> | string
   isFirstConnection?: Prisma.BoolFilter<"User"> | boolean
-  etpToken?: Prisma.StringNullableFilter<"User"> | string | null
-  isBeta?: Prisma.BoolFilter<"User"> | boolean
   language?: Prisma.StringFilter<"User"> | string
-  thorToken?: Prisma.StringNullableFilter<"User"> | string | null
   accounts?: Prisma.AccountListRelationFilter
-  businesses?: Prisma.BusinessListRelationFilter
-  teams?: Prisma.TeamListRelationFilter
-  teamSubscriptions?: Prisma.TeamSubscriptionListRelationFilter
-  comments?: Prisma.CommentListRelationFilter
   dashboardLayout?: Prisma.XOR<Prisma.DashboardLayoutNullableScalarRelationFilter, Prisma.DashboardLayoutWhereInput> | null
   groups?: Prisma.GroupListRelationFilter
   moods?: Prisma.MoodListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
-  posts?: Prisma.PostListRelationFilter
-  subscriptions?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   synchronizations?: Prisma.SynchronizationListRelationFilter
   tags?: Prisma.TagListRelationFilter
-  votes?: Prisma.VoteListRelationFilter
-  businessSubscriptions?: Prisma.BusinessSubscriptionListRelationFilter
-  referral?: Prisma.XOR<Prisma.ReferralNullableScalarRelationFilter, Prisma.ReferralWhereInput> | null
 }
 
 export type UserOrderByWithRelationInput = {
@@ -230,27 +196,14 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   auth_user_id?: Prisma.SortOrder
   isFirstConnection?: Prisma.SortOrder
-  etpToken?: Prisma.SortOrderInput | Prisma.SortOrder
-  isBeta?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  thorToken?: Prisma.SortOrderInput | Prisma.SortOrder
   accounts?: Prisma.AccountOrderByRelationAggregateInput
-  businesses?: Prisma.BusinessOrderByRelationAggregateInput
-  teams?: Prisma.TeamOrderByRelationAggregateInput
-  teamSubscriptions?: Prisma.TeamSubscriptionOrderByRelationAggregateInput
-  comments?: Prisma.CommentOrderByRelationAggregateInput
   dashboardLayout?: Prisma.DashboardLayoutOrderByWithRelationInput
   groups?: Prisma.GroupOrderByRelationAggregateInput
   moods?: Prisma.MoodOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
-  orders?: Prisma.OrderOrderByRelationAggregateInput
-  posts?: Prisma.PostOrderByRelationAggregateInput
-  subscriptions?: Prisma.SubscriptionOrderByWithRelationInput
   synchronizations?: Prisma.SynchronizationOrderByRelationAggregateInput
   tags?: Prisma.TagOrderByRelationAggregateInput
-  votes?: Prisma.VoteOrderByRelationAggregateInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionOrderByRelationAggregateInput
-  referral?: Prisma.ReferralOrderByWithRelationInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -261,27 +214,14 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   isFirstConnection?: Prisma.BoolFilter<"User"> | boolean
-  etpToken?: Prisma.StringNullableFilter<"User"> | string | null
-  isBeta?: Prisma.BoolFilter<"User"> | boolean
   language?: Prisma.StringFilter<"User"> | string
-  thorToken?: Prisma.StringNullableFilter<"User"> | string | null
   accounts?: Prisma.AccountListRelationFilter
-  businesses?: Prisma.BusinessListRelationFilter
-  teams?: Prisma.TeamListRelationFilter
-  teamSubscriptions?: Prisma.TeamSubscriptionListRelationFilter
-  comments?: Prisma.CommentListRelationFilter
   dashboardLayout?: Prisma.XOR<Prisma.DashboardLayoutNullableScalarRelationFilter, Prisma.DashboardLayoutWhereInput> | null
   groups?: Prisma.GroupListRelationFilter
   moods?: Prisma.MoodListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
-  posts?: Prisma.PostListRelationFilter
-  subscriptions?: Prisma.XOR<Prisma.SubscriptionNullableScalarRelationFilter, Prisma.SubscriptionWhereInput> | null
   synchronizations?: Prisma.SynchronizationListRelationFilter
   tags?: Prisma.TagListRelationFilter
-  votes?: Prisma.VoteListRelationFilter
-  businessSubscriptions?: Prisma.BusinessSubscriptionListRelationFilter
-  referral?: Prisma.XOR<Prisma.ReferralNullableScalarRelationFilter, Prisma.ReferralWhereInput> | null
 }, "id" | "email" | "auth_user_id">
 
 export type UserOrderByWithAggregationInput = {
@@ -289,10 +229,7 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   auth_user_id?: Prisma.SortOrder
   isFirstConnection?: Prisma.SortOrder
-  etpToken?: Prisma.SortOrderInput | Prisma.SortOrder
-  isBeta?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  thorToken?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
@@ -306,10 +243,7 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   auth_user_id?: Prisma.StringWithAggregatesFilter<"User"> | string
   isFirstConnection?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
-  etpToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
-  isBeta?: Prisma.BoolWithAggregatesFilter<"User"> | boolean
   language?: Prisma.StringWithAggregatesFilter<"User"> | string
-  thorToken?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
 }
 
 export type UserCreateInput = {
@@ -317,27 +251,14 @@ export type UserCreateInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -345,27 +266,14 @@ export type UserUncheckedCreateInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -373,27 +281,14 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -401,27 +296,14 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -429,10 +311,7 @@ export type UserCreateManyInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -440,10 +319,7 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -451,10 +327,7 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type UserScalarRelationFilter = {
@@ -467,10 +340,7 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   auth_user_id?: Prisma.SortOrder
   isFirstConnection?: Prisma.SortOrder
-  etpToken?: Prisma.SortOrder
-  isBeta?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  thorToken?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -478,10 +348,7 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   auth_user_id?: Prisma.SortOrder
   isFirstConnection?: Prisma.SortOrder
-  etpToken?: Prisma.SortOrder
-  isBeta?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  thorToken?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -489,52 +356,7 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   auth_user_id?: Prisma.SortOrder
   isFirstConnection?: Prisma.SortOrder
-  etpToken?: Prisma.SortOrder
-  isBeta?: Prisma.SortOrder
   language?: Prisma.SortOrder
-  thorToken?: Prisma.SortOrder
-}
-
-export type UserCreateNestedOneWithoutSubscriptionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutSubscriptionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionsInput
-  upsert?: Prisma.UserUpsertWithoutSubscriptionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionsInput, Prisma.UserUpdateWithoutSubscriptionsInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
-}
-
-export type UserCreateNestedOneWithoutBusinessSubscriptionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessSubscriptionsInput, Prisma.UserUncheckedCreateWithoutBusinessSubscriptionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessSubscriptionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutBusinessSubscriptionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessSubscriptionsInput, Prisma.UserUncheckedCreateWithoutBusinessSubscriptionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessSubscriptionsInput
-  upsert?: Prisma.UserUpsertWithoutBusinessSubscriptionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBusinessSubscriptionsInput, Prisma.UserUpdateWithoutBusinessSubscriptionsInput>, Prisma.UserUncheckedUpdateWithoutBusinessSubscriptionsInput>
-}
-
-export type UserCreateNestedOneWithoutTeamSubscriptionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTeamSubscriptionsInput, Prisma.UserUncheckedCreateWithoutTeamSubscriptionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTeamSubscriptionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutTeamSubscriptionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTeamSubscriptionsInput, Prisma.UserUncheckedCreateWithoutTeamSubscriptionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTeamSubscriptionsInput
-  upsert?: Prisma.UserUpsertWithoutTeamSubscriptionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTeamSubscriptionsInput, Prisma.UserUpdateWithoutTeamSubscriptionsInput>, Prisma.UserUncheckedUpdateWithoutTeamSubscriptionsInput>
 }
 
 export type UserCreateNestedOneWithoutNotificationsInput = {
@@ -567,34 +389,6 @@ export type UserUpdateOneRequiredWithoutSynchronizationsNestedInput = {
   upsert?: Prisma.UserUpsertWithoutSynchronizationsInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSynchronizationsInput, Prisma.UserUpdateWithoutSynchronizationsInput>, Prisma.UserUncheckedUpdateWithoutSynchronizationsInput>
-}
-
-export type UserCreateNestedOneWithoutTeamsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTeamsInput, Prisma.UserUncheckedCreateWithoutTeamsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTeamsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutTeamsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTeamsInput, Prisma.UserUncheckedCreateWithoutTeamsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTeamsInput
-  upsert?: Prisma.UserUpsertWithoutTeamsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTeamsInput, Prisma.UserUpdateWithoutTeamsInput>, Prisma.UserUncheckedUpdateWithoutTeamsInput>
-}
-
-export type UserCreateNestedOneWithoutBusinessesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutBusinessesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessesInput
-  upsert?: Prisma.UserUpsertWithoutBusinessesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBusinessesInput, Prisma.UserUpdateWithoutBusinessesInput>, Prisma.UserUncheckedUpdateWithoutBusinessesInput>
 }
 
 export type UserCreateNestedOneWithoutGroupsInput = {
@@ -653,20 +447,6 @@ export type UserUpdateOneRequiredWithoutMoodsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMoodsInput, Prisma.UserUpdateWithoutMoodsInput>, Prisma.UserUncheckedUpdateWithoutMoodsInput>
 }
 
-export type UserCreateNestedOneWithoutReferralInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReferralInput, Prisma.UserUncheckedCreateWithoutReferralInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReferralInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutReferralNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReferralInput, Prisma.UserUncheckedCreateWithoutReferralInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReferralInput
-  upsert?: Prisma.UserUpsertWithoutReferralInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReferralInput, Prisma.UserUpdateWithoutReferralInput>, Prisma.UserUncheckedUpdateWithoutReferralInput>
-}
-
 export type UserCreateNestedOneWithoutTagsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutTagsInput, Prisma.UserUncheckedCreateWithoutTagsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutTagsInput
@@ -681,459 +461,18 @@ export type UserUpdateOneRequiredWithoutTagsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTagsInput, Prisma.UserUpdateWithoutTagsInput>, Prisma.UserUncheckedUpdateWithoutTagsInput>
 }
 
-export type UserCreateNestedOneWithoutPostsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutPostsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPostsInput
-  upsert?: Prisma.UserUpsertWithoutPostsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPostsInput, Prisma.UserUpdateWithoutPostsInput>, Prisma.UserUncheckedUpdateWithoutPostsInput>
-}
-
-export type UserCreateNestedOneWithoutCommentsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentsInput
-  upsert?: Prisma.UserUpsertWithoutCommentsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
-}
-
-export type UserCreateNestedOneWithoutVotesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutVotesInput, Prisma.UserUncheckedCreateWithoutVotesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVotesInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutVotesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutVotesInput, Prisma.UserUncheckedCreateWithoutVotesInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVotesInput
-  upsert?: Prisma.UserUpsertWithoutVotesInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVotesInput, Prisma.UserUpdateWithoutVotesInput>, Prisma.UserUncheckedUpdateWithoutVotesInput>
-}
-
-export type UserCreateNestedOneWithoutOrdersInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
-  upsert?: Prisma.UserUpsertWithoutOrdersInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
-}
-
-export type UserCreateWithoutSubscriptionsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutSubscriptionsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutSubscriptionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
-}
-
-export type UserUpsertWithoutSubscriptionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionsInput, Prisma.UserUncheckedCreateWithoutSubscriptionsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutSubscriptionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionsInput>
-}
-
-export type UserUpdateWithoutSubscriptionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSubscriptionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutBusinessSubscriptionsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutBusinessSubscriptionsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutBusinessSubscriptionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessSubscriptionsInput, Prisma.UserUncheckedCreateWithoutBusinessSubscriptionsInput>
-}
-
-export type UserUpsertWithoutBusinessSubscriptionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutBusinessSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutBusinessSubscriptionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessSubscriptionsInput, Prisma.UserUncheckedCreateWithoutBusinessSubscriptionsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutBusinessSubscriptionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutBusinessSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutBusinessSubscriptionsInput>
-}
-
-export type UserUpdateWithoutBusinessSubscriptionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutBusinessSubscriptionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutTeamSubscriptionsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutTeamSubscriptionsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutTeamSubscriptionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTeamSubscriptionsInput, Prisma.UserUncheckedCreateWithoutTeamSubscriptionsInput>
-}
-
-export type UserUpsertWithoutTeamSubscriptionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTeamSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutTeamSubscriptionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTeamSubscriptionsInput, Prisma.UserUncheckedCreateWithoutTeamSubscriptionsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTeamSubscriptionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTeamSubscriptionsInput, Prisma.UserUncheckedUpdateWithoutTeamSubscriptionsInput>
-}
-
-export type UserUpdateWithoutTeamSubscriptionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTeamSubscriptionsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
 export type UserCreateWithoutNotificationsInput = {
   id?: string
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -1141,26 +480,13 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -1184,26 +510,13 @@ export type UserUpdateWithoutNotificationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -1211,26 +524,13 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSynchronizationsInput = {
@@ -1238,26 +538,13 @@ export type UserCreateWithoutSynchronizationsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSynchronizationsInput = {
@@ -1265,26 +552,13 @@ export type UserUncheckedCreateWithoutSynchronizationsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSynchronizationsInput = {
@@ -1308,26 +582,13 @@ export type UserUpdateWithoutSynchronizationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSynchronizationsInput = {
@@ -1335,274 +596,13 @@ export type UserUncheckedUpdateWithoutSynchronizationsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutTeamsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutTeamsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutTeamsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTeamsInput, Prisma.UserUncheckedCreateWithoutTeamsInput>
-}
-
-export type UserUpsertWithoutTeamsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTeamsInput, Prisma.UserUncheckedUpdateWithoutTeamsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTeamsInput, Prisma.UserUncheckedCreateWithoutTeamsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutTeamsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTeamsInput, Prisma.UserUncheckedUpdateWithoutTeamsInput>
-}
-
-export type UserUpdateWithoutTeamsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutTeamsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutBusinessesInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutBusinessesInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutBusinessesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
-}
-
-export type UserUpsertWithoutBusinessesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutBusinessesInput, Prisma.UserUncheckedUpdateWithoutBusinessesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutBusinessesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutBusinessesInput, Prisma.UserUncheckedUpdateWithoutBusinessesInput>
-}
-
-export type UserUpdateWithoutBusinessesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutBusinessesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutGroupsInput = {
@@ -1610,26 +610,13 @@ export type UserCreateWithoutGroupsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
   moods?: Prisma.MoodCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutGroupsInput = {
@@ -1637,26 +624,13 @@ export type UserUncheckedCreateWithoutGroupsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
   moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutGroupsInput = {
@@ -1680,26 +654,13 @@ export type UserUpdateWithoutGroupsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
   moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGroupsInput = {
@@ -1707,26 +668,13 @@ export type UserUncheckedUpdateWithoutGroupsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
   moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -1734,26 +682,13 @@ export type UserCreateWithoutAccountsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -1761,26 +696,13 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -1804,26 +726,13 @@ export type UserUpdateWithoutAccountsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -1831,26 +740,13 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutDashboardLayoutInput = {
@@ -1858,26 +754,13 @@ export type UserCreateWithoutDashboardLayoutInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   groups?: Prisma.GroupCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutDashboardLayoutInput = {
@@ -1885,26 +768,13 @@ export type UserUncheckedCreateWithoutDashboardLayoutInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutDashboardLayoutInput = {
@@ -1928,26 +798,13 @@ export type UserUpdateWithoutDashboardLayoutInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutDashboardLayoutInput = {
@@ -1955,26 +812,13 @@ export type UserUncheckedUpdateWithoutDashboardLayoutInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMoodsInput = {
@@ -1982,26 +826,13 @@ export type UserCreateWithoutMoodsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
   tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMoodsInput = {
@@ -2009,26 +840,13 @@ export type UserUncheckedCreateWithoutMoodsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
   tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMoodsInput = {
@@ -2052,26 +870,13 @@ export type UserUpdateWithoutMoodsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMoodsInput = {
@@ -2079,150 +884,13 @@ export type UserUncheckedUpdateWithoutMoodsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
   tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutReferralInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutReferralInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutReferralInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutReferralInput, Prisma.UserUncheckedCreateWithoutReferralInput>
-}
-
-export type UserUpsertWithoutReferralInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutReferralInput, Prisma.UserUncheckedUpdateWithoutReferralInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutReferralInput, Prisma.UserUncheckedCreateWithoutReferralInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutReferralInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutReferralInput, Prisma.UserUncheckedUpdateWithoutReferralInput>
-}
-
-export type UserUpdateWithoutReferralInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutReferralInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutTagsInput = {
@@ -2230,26 +898,13 @@ export type UserCreateWithoutTagsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTagsInput = {
@@ -2257,26 +912,13 @@ export type UserUncheckedCreateWithoutTagsInput = {
   email: string
   auth_user_id: string
   isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
   language?: string
-  thorToken?: string | null
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
   groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
   moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
   synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTagsInput = {
@@ -2300,26 +942,13 @@ export type UserUpdateWithoutTagsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTagsInput = {
@@ -2327,522 +956,13 @@ export type UserUncheckedUpdateWithoutTagsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
   isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
   language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
   dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
   groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
   moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
   synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutPostsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutPostsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutPostsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
-}
-
-export type UserUpsertWithoutPostsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPostsInput, Prisma.UserUncheckedUpdateWithoutPostsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPostsInput, Prisma.UserUncheckedCreateWithoutPostsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutPostsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPostsInput, Prisma.UserUncheckedUpdateWithoutPostsInput>
-}
-
-export type UserUpdateWithoutPostsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutPostsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutCommentsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutCommentsInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutCommentsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
-}
-
-export type UserUpsertWithoutCommentsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCommentsInput, Prisma.UserUncheckedCreateWithoutCommentsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutCommentsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCommentsInput, Prisma.UserUncheckedUpdateWithoutCommentsInput>
-}
-
-export type UserUpdateWithoutCommentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutCommentsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutVotesInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutVotesInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutVotesInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutVotesInput, Prisma.UserUncheckedCreateWithoutVotesInput>
-}
-
-export type UserUpsertWithoutVotesInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutVotesInput, Prisma.UserUncheckedUpdateWithoutVotesInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutVotesInput, Prisma.UserUncheckedCreateWithoutVotesInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutVotesInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutVotesInput, Prisma.UserUncheckedUpdateWithoutVotesInput>
-}
-
-export type UserUpdateWithoutVotesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutVotesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
-}
-
-export type UserCreateWithoutOrdersInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralCreateNestedOneWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutOrdersInput = {
-  id?: string
-  email: string
-  auth_user_id: string
-  isFirstConnection?: boolean
-  etpToken?: string | null
-  isBeta?: boolean
-  language?: string
-  thorToken?: string | null
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutUserInput
-  teams?: Prisma.TeamUncheckedCreateNestedManyWithoutUserInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutUserInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedCreateNestedOneWithoutUserInput
-  groups?: Prisma.GroupUncheckedCreateNestedManyWithoutUserInput
-  moods?: Prisma.MoodUncheckedCreateNestedManyWithoutUserInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
-  posts?: Prisma.PostUncheckedCreateNestedManyWithoutUserInput
-  subscriptions?: Prisma.SubscriptionUncheckedCreateNestedOneWithoutUserInput
-  synchronizations?: Prisma.SynchronizationUncheckedCreateNestedManyWithoutUserInput
-  tags?: Prisma.TagUncheckedCreateNestedManyWithoutUserInput
-  votes?: Prisma.VoteUncheckedCreateNestedManyWithoutUserInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedCreateNestedManyWithoutUserInput
-  referral?: Prisma.ReferralUncheckedCreateNestedOneWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutOrdersInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
-}
-
-export type UserUpsertWithoutOrdersInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutOrdersInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
-}
-
-export type UserUpdateWithoutOrdersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUpdateOneWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutOrdersInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  auth_user_id?: Prisma.StringFieldUpdateOperationsInput | string
-  isFirstConnection?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  etpToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  isBeta?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  language?: Prisma.StringFieldUpdateOperationsInput | string
-  thorToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutUserNestedInput
-  teams?: Prisma.TeamUncheckedUpdateManyWithoutUserNestedInput
-  teamSubscriptions?: Prisma.TeamSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutUserNestedInput
-  dashboardLayout?: Prisma.DashboardLayoutUncheckedUpdateOneWithoutUserNestedInput
-  groups?: Prisma.GroupUncheckedUpdateManyWithoutUserNestedInput
-  moods?: Prisma.MoodUncheckedUpdateManyWithoutUserNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
-  posts?: Prisma.PostUncheckedUpdateManyWithoutUserNestedInput
-  subscriptions?: Prisma.SubscriptionUncheckedUpdateOneWithoutUserNestedInput
-  synchronizations?: Prisma.SynchronizationUncheckedUpdateManyWithoutUserNestedInput
-  tags?: Prisma.TagUncheckedUpdateManyWithoutUserNestedInput
-  votes?: Prisma.VoteUncheckedUpdateManyWithoutUserNestedInput
-  businessSubscriptions?: Prisma.BusinessSubscriptionUncheckedUpdateManyWithoutUserNestedInput
-  referral?: Prisma.ReferralUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -2852,36 +972,20 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
 
 export type UserCountOutputType = {
   accounts: number
-  businesses: number
-  teams: number
-  teamSubscriptions: number
-  comments: number
   groups: number
   moods: number
   notifications: number
-  orders: number
-  posts: number
   synchronizations: number
   tags: number
-  votes: number
-  businessSubscriptions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-  businesses?: boolean | UserCountOutputTypeCountBusinessesArgs
-  teams?: boolean | UserCountOutputTypeCountTeamsArgs
-  teamSubscriptions?: boolean | UserCountOutputTypeCountTeamSubscriptionsArgs
-  comments?: boolean | UserCountOutputTypeCountCommentsArgs
   groups?: boolean | UserCountOutputTypeCountGroupsArgs
   moods?: boolean | UserCountOutputTypeCountMoodsArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
-  orders?: boolean | UserCountOutputTypeCountOrdersArgs
-  posts?: boolean | UserCountOutputTypeCountPostsArgs
   synchronizations?: boolean | UserCountOutputTypeCountSynchronizationsArgs
   tags?: boolean | UserCountOutputTypeCountTagsArgs
-  votes?: boolean | UserCountOutputTypeCountVotesArgs
-  businessSubscriptions?: boolean | UserCountOutputTypeCountBusinessSubscriptionsArgs
 }
 
 /**
@@ -2899,34 +1003,6 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AccountWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountBusinessesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BusinessWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountTeamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TeamWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountTeamSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TeamSubscriptionWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.CommentWhereInput
 }
 
 /**
@@ -2953,20 +1029,6 @@ export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Ty
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrderWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountPostsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PostWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountSynchronizationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.SynchronizationWhereInput
 }
@@ -2978,47 +1040,20 @@ export type UserCountOutputTypeCountTagsArgs<ExtArgs extends runtime.Types.Exten
   where?: Prisma.TagWhereInput
 }
 
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountVotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.VoteWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountBusinessSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.BusinessSubscriptionWhereInput
-}
-
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   auth_user_id?: boolean
   isFirstConnection?: boolean
-  etpToken?: boolean
-  isBeta?: boolean
   language?: boolean
-  thorToken?: boolean
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  businesses?: boolean | Prisma.User$businessesArgs<ExtArgs>
-  teams?: boolean | Prisma.User$teamsArgs<ExtArgs>
-  teamSubscriptions?: boolean | Prisma.User$teamSubscriptionsArgs<ExtArgs>
-  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   dashboardLayout?: boolean | Prisma.User$dashboardLayoutArgs<ExtArgs>
   groups?: boolean | Prisma.User$groupsArgs<ExtArgs>
   moods?: boolean | Prisma.User$moodsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
-  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
-  posts?: boolean | Prisma.User$postsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   synchronizations?: boolean | Prisma.User$synchronizationsArgs<ExtArgs>
   tags?: boolean | Prisma.User$tagsArgs<ExtArgs>
-  votes?: boolean | Prisma.User$votesArgs<ExtArgs>
-  businessSubscriptions?: boolean | Prisma.User$businessSubscriptionsArgs<ExtArgs>
-  referral?: boolean | Prisma.User$referralArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -3027,10 +1062,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   auth_user_id?: boolean
   isFirstConnection?: boolean
-  etpToken?: boolean
-  isBeta?: boolean
   language?: boolean
-  thorToken?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -3038,10 +1070,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   auth_user_id?: boolean
   isFirstConnection?: boolean
-  etpToken?: boolean
-  isBeta?: boolean
   language?: boolean
-  thorToken?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -3049,31 +1078,18 @@ export type UserSelectScalar = {
   email?: boolean
   auth_user_id?: boolean
   isFirstConnection?: boolean
-  etpToken?: boolean
-  isBeta?: boolean
   language?: boolean
-  thorToken?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "auth_user_id" | "isFirstConnection" | "etpToken" | "isBeta" | "language" | "thorToken", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "auth_user_id" | "isFirstConnection" | "language", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  businesses?: boolean | Prisma.User$businessesArgs<ExtArgs>
-  teams?: boolean | Prisma.User$teamsArgs<ExtArgs>
-  teamSubscriptions?: boolean | Prisma.User$teamSubscriptionsArgs<ExtArgs>
-  comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   dashboardLayout?: boolean | Prisma.User$dashboardLayoutArgs<ExtArgs>
   groups?: boolean | Prisma.User$groupsArgs<ExtArgs>
   moods?: boolean | Prisma.User$moodsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
-  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
-  posts?: boolean | Prisma.User$postsArgs<ExtArgs>
-  subscriptions?: boolean | Prisma.User$subscriptionsArgs<ExtArgs>
   synchronizations?: boolean | Prisma.User$synchronizationsArgs<ExtArgs>
   tags?: boolean | Prisma.User$tagsArgs<ExtArgs>
-  votes?: boolean | Prisma.User$votesArgs<ExtArgs>
-  businessSubscriptions?: boolean | Prisma.User$businessSubscriptionsArgs<ExtArgs>
-  referral?: boolean | Prisma.User$referralArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -3083,32 +1099,19 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     accounts: Prisma.$AccountPayload<ExtArgs>[]
-    businesses: Prisma.$BusinessPayload<ExtArgs>[]
-    teams: Prisma.$TeamPayload<ExtArgs>[]
-    teamSubscriptions: Prisma.$TeamSubscriptionPayload<ExtArgs>[]
-    comments: Prisma.$CommentPayload<ExtArgs>[]
     dashboardLayout: Prisma.$DashboardLayoutPayload<ExtArgs> | null
     groups: Prisma.$GroupPayload<ExtArgs>[]
     moods: Prisma.$MoodPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
-    orders: Prisma.$OrderPayload<ExtArgs>[]
-    posts: Prisma.$PostPayload<ExtArgs>[]
-    subscriptions: Prisma.$SubscriptionPayload<ExtArgs> | null
     synchronizations: Prisma.$SynchronizationPayload<ExtArgs>[]
     tags: Prisma.$TagPayload<ExtArgs>[]
-    votes: Prisma.$VotePayload<ExtArgs>[]
-    businessSubscriptions: Prisma.$BusinessSubscriptionPayload<ExtArgs>[]
-    referral: Prisma.$ReferralPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
     auth_user_id: string
     isFirstConnection: boolean
-    etpToken: string | null
-    isBeta: boolean
     language: string
-    thorToken: string | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -3504,22 +1507,12 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  businesses<T extends Prisma.User$businessesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$businessesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BusinessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  teams<T extends Prisma.User$teamsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teamsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  teamSubscriptions<T extends Prisma.User$teamSubscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$teamSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TeamSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   dashboardLayout<T extends Prisma.User$dashboardLayoutArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$dashboardLayoutArgs<ExtArgs>>): Prisma.Prisma__DashboardLayoutClient<runtime.Types.Result.GetResult<Prisma.$DashboardLayoutPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   groups<T extends Prisma.User$groupsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$groupsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   moods<T extends Prisma.User$moodsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$moodsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MoodPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  posts<T extends Prisma.User$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  subscriptions<T extends Prisma.User$subscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionsArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   synchronizations<T extends Prisma.User$synchronizationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$synchronizationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SynchronizationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tags<T extends Prisma.User$tagsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tagsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TagPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  votes<T extends Prisma.User$votesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$votesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  businessSubscriptions<T extends Prisma.User$businessSubscriptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$businessSubscriptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BusinessSubscriptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  referral<T extends Prisma.User$referralArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$referralArgs<ExtArgs>>): Prisma.Prisma__ReferralClient<runtime.Types.Result.GetResult<Prisma.$ReferralPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3553,10 +1546,7 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly auth_user_id: Prisma.FieldRef<"User", 'String'>
   readonly isFirstConnection: Prisma.FieldRef<"User", 'Boolean'>
-  readonly etpToken: Prisma.FieldRef<"User", 'String'>
-  readonly isBeta: Prisma.FieldRef<"User", 'Boolean'>
   readonly language: Prisma.FieldRef<"User", 'String'>
-  readonly thorToken: Prisma.FieldRef<"User", 'String'>
 }
     
 
@@ -3969,102 +1959,6 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.businesses
- */
-export type User$businessesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Business
-   */
-  select?: Prisma.BusinessSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Business
-   */
-  omit?: Prisma.BusinessOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BusinessInclude<ExtArgs> | null
-  where?: Prisma.BusinessWhereInput
-  orderBy?: Prisma.BusinessOrderByWithRelationInput | Prisma.BusinessOrderByWithRelationInput[]
-  cursor?: Prisma.BusinessWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BusinessScalarFieldEnum | Prisma.BusinessScalarFieldEnum[]
-}
-
-/**
- * User.teams
- */
-export type User$teamsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Team
-   */
-  select?: Prisma.TeamSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Team
-   */
-  omit?: Prisma.TeamOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TeamInclude<ExtArgs> | null
-  where?: Prisma.TeamWhereInput
-  orderBy?: Prisma.TeamOrderByWithRelationInput | Prisma.TeamOrderByWithRelationInput[]
-  cursor?: Prisma.TeamWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.TeamScalarFieldEnum | Prisma.TeamScalarFieldEnum[]
-}
-
-/**
- * User.teamSubscriptions
- */
-export type User$teamSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the TeamSubscription
-   */
-  select?: Prisma.TeamSubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the TeamSubscription
-   */
-  omit?: Prisma.TeamSubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.TeamSubscriptionInclude<ExtArgs> | null
-  where?: Prisma.TeamSubscriptionWhereInput
-  orderBy?: Prisma.TeamSubscriptionOrderByWithRelationInput | Prisma.TeamSubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.TeamSubscriptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.TeamSubscriptionScalarFieldEnum | Prisma.TeamSubscriptionScalarFieldEnum[]
-}
-
-/**
- * User.comments
- */
-export type User$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Comment
-   */
-  select?: Prisma.CommentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Comment
-   */
-  omit?: Prisma.CommentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.CommentInclude<ExtArgs> | null
-  where?: Prisma.CommentWhereInput
-  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
-  cursor?: Prisma.CommentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
-}
-
-/**
  * User.dashboardLayout
  */
 export type User$dashboardLayoutArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4156,73 +2050,6 @@ export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * User.orders
- */
-export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Order
-   */
-  select?: Prisma.OrderSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Order
-   */
-  omit?: Prisma.OrderOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OrderInclude<ExtArgs> | null
-  where?: Prisma.OrderWhereInput
-  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
-  cursor?: Prisma.OrderWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
-}
-
-/**
- * User.posts
- */
-export type User$postsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Post
-   */
-  select?: Prisma.PostSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Post
-   */
-  omit?: Prisma.PostOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PostInclude<ExtArgs> | null
-  where?: Prisma.PostWhereInput
-  orderBy?: Prisma.PostOrderByWithRelationInput | Prisma.PostOrderByWithRelationInput[]
-  cursor?: Prisma.PostWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PostScalarFieldEnum | Prisma.PostScalarFieldEnum[]
-}
-
-/**
- * User.subscriptions
- */
-export type User$subscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Subscription
-   */
-  select?: Prisma.SubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Subscription
-   */
-  omit?: Prisma.SubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SubscriptionInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionWhereInput
-}
-
-/**
  * User.synchronizations
  */
 export type User$synchronizationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -4268,73 +2095,6 @@ export type User$tagsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   take?: number
   skip?: number
   distinct?: Prisma.TagScalarFieldEnum | Prisma.TagScalarFieldEnum[]
-}
-
-/**
- * User.votes
- */
-export type User$votesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Vote
-   */
-  select?: Prisma.VoteSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Vote
-   */
-  omit?: Prisma.VoteOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.VoteInclude<ExtArgs> | null
-  where?: Prisma.VoteWhereInput
-  orderBy?: Prisma.VoteOrderByWithRelationInput | Prisma.VoteOrderByWithRelationInput[]
-  cursor?: Prisma.VoteWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.VoteScalarFieldEnum | Prisma.VoteScalarFieldEnum[]
-}
-
-/**
- * User.businessSubscriptions
- */
-export type User$businessSubscriptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the BusinessSubscription
-   */
-  select?: Prisma.BusinessSubscriptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the BusinessSubscription
-   */
-  omit?: Prisma.BusinessSubscriptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.BusinessSubscriptionInclude<ExtArgs> | null
-  where?: Prisma.BusinessSubscriptionWhereInput
-  orderBy?: Prisma.BusinessSubscriptionOrderByWithRelationInput | Prisma.BusinessSubscriptionOrderByWithRelationInput[]
-  cursor?: Prisma.BusinessSubscriptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.BusinessSubscriptionScalarFieldEnum | Prisma.BusinessSubscriptionScalarFieldEnum[]
-}
-
-/**
- * User.referral
- */
-export type User$referralArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Referral
-   */
-  select?: Prisma.ReferralSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Referral
-   */
-  omit?: Prisma.ReferralOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReferralInclude<ExtArgs> | null
-  where?: Prisma.ReferralWhereInput
 }
 
 /**

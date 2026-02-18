@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
-import { User, Subscription, Tag, DashboardLayout } from "@/prisma/generated/prisma/browser";
+import { User, Tag, DashboardLayout } from "@/prisma/generated/prisma/browser";
 import { Prisma } from "@/prisma/generated/prisma/browser";
 import { User as SupabaseUser } from "@supabase/supabase-js";
 import { Group, Account } from "@/context/data-provider";
@@ -10,15 +10,6 @@ import {
   saveGroupAction,
   updateGroupAction,
 } from "@/server/groups";
-
-type SubscriptionData = {
-  id: string;
-  email: string;
-  plan: string;
-  status: string;
-  endDate: Date | null;
-  trialEndsAt: Date | null;
-} | null;
 
 // Internal type with proper Widget[] types
 export type DashboardLayoutWithWidgets = {
@@ -33,7 +24,6 @@ export type DashboardLayoutWithWidgets = {
 type UserStore = {
   user: User | null;
   supabaseUser: SupabaseUser | null;
-  subscription: SubscriptionData;
   tags: Tag[];
   accounts: Account[];
   groups: Group[];
@@ -45,7 +35,6 @@ type UserStore = {
   setTimezone: (timezone: string) => void;
   setUser: (user: User | null) => void;
   setSupabaseUser: (supabaseUser: SupabaseUser | null) => void;
-  setSubscription: (subscription: Subscription | null) => void;
   setTags: (tags: Tag[]) => void;
   addTag: (tag: Tag) => void;
   removeTag: (tagId: string) => void;
@@ -69,7 +58,6 @@ export const useUserStore = create<UserStore>()(
     (set) => ({
       user: null,
       supabaseUser: null,
-      subscription: null,
       tags: [],
       accounts: [],
       groups: [],
@@ -81,19 +69,6 @@ export const useUserStore = create<UserStore>()(
       setTimezone: (timezone: string) => set({ timezone }),
       setUser: (user) => set({ user }),
       setSupabaseUser: (supabaseUser) => set({ supabaseUser }),
-      setSubscription: (subscription) =>
-        set({
-          subscription: subscription
-            ? {
-                id: subscription.id,
-                email: subscription.email,
-                plan: subscription.plan,
-                status: subscription.status,
-                endDate: subscription.endDate,
-                trialEndsAt: subscription.trialEndsAt,
-              }
-            : null,
-        }),
       setTags: (tags) => set({ tags }),
       addTag: (tag) =>
         set((state) => ({
@@ -186,7 +161,6 @@ export const useUserStore = create<UserStore>()(
       resetUser: () =>
         set({
           user: null,
-          subscription: null,
           tags: [],
           accounts: [],
           groups: [],

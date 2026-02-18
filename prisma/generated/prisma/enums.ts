@@ -9,33 +9,6 @@
 * 🟢 You can import this file directly.
 */
 
-export const PostType = {
-  FEATURE_REQUEST: 'FEATURE_REQUEST',
-  BUG_REPORT: 'BUG_REPORT',
-  DISCUSSION: 'DISCUSSION'
-} as const
-
-export type PostType = (typeof PostType)[keyof typeof PostType]
-
-
-export const PostStatus = {
-  OPEN: 'OPEN',
-  IN_PROGRESS: 'IN_PROGRESS',
-  COMPLETED: 'COMPLETED',
-  CLOSED: 'CLOSED'
-} as const
-
-export type PostStatus = (typeof PostStatus)[keyof typeof PostStatus]
-
-
-export const VoteType = {
-  UPVOTE: 'UPVOTE',
-  DOWNVOTE: 'DOWNVOTE'
-} as const
-
-export type VoteType = (typeof VoteType)[keyof typeof VoteType]
-
-
 export const PaymentFrequency = {
   MONTHLY: 'MONTHLY',
   QUARTERLY: 'QUARTERLY',

@@ -53,33 +53,18 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Trade: 'Trade',
   TickDetails: 'TickDetails',
-  Subscription: 'Subscription',
-  BusinessSubscription: 'BusinessSubscription',
-  TeamSubscription: 'TeamSubscription',
   Notification: 'Notification',
   User: 'User',
   Synchronization: 'Synchronization',
-  Team: 'Team',
-  TeamInvitation: 'TeamInvitation',
-  TeamManager: 'TeamManager',
-  Business: 'Business',
-  BusinessManager: 'BusinessManager',
-  BusinessInvitation: 'BusinessInvitation',
   Group: 'Group',
   Account: 'Account',
   Payout: 'Payout',
   DashboardLayout: 'DashboardLayout',
-  SubscriptionFeedback: 'SubscriptionFeedback',
   Mood: 'Mood',
   Shared: 'Shared',
-  Referral: 'Referral',
   FinancialEvent: 'FinancialEvent',
   Tag: 'Tag',
   Newsletter: 'Newsletter',
-  Post: 'Post',
-  Comment: 'Comment',
-  Vote: 'Vote',
-  Order: 'Order',
   TradeAnalytics: 'TradeAnalytics',
   HistoricalData: 'HistoricalData'
 } as const
@@ -139,53 +124,6 @@ export const TickDetailsScalarFieldEnum = {
 export type TickDetailsScalarFieldEnum = (typeof TickDetailsScalarFieldEnum)[keyof typeof TickDetailsScalarFieldEnum]
 
 
-export const SubscriptionScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  plan: 'plan',
-  createdAt: 'createdAt',
-  userId: 'userId',
-  endDate: 'endDate',
-  status: 'status',
-  trialEndsAt: 'trialEndsAt',
-  interval: 'interval'
-} as const
-
-export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
-
-
-export const BusinessSubscriptionScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  plan: 'plan',
-  createdAt: 'createdAt',
-  userId: 'userId',
-  businessId: 'businessId',
-  endDate: 'endDate',
-  status: 'status',
-  trialEndsAt: 'trialEndsAt',
-  interval: 'interval'
-} as const
-
-export type BusinessSubscriptionScalarFieldEnum = (typeof BusinessSubscriptionScalarFieldEnum)[keyof typeof BusinessSubscriptionScalarFieldEnum]
-
-
-export const TeamSubscriptionScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  plan: 'plan',
-  createdAt: 'createdAt',
-  userId: 'userId',
-  teamId: 'teamId',
-  endDate: 'endDate',
-  status: 'status',
-  trialEndsAt: 'trialEndsAt',
-  interval: 'interval'
-} as const
-
-export type TeamSubscriptionScalarFieldEnum = (typeof TeamSubscriptionScalarFieldEnum)[keyof typeof TeamSubscriptionScalarFieldEnum]
-
-
 export const NotificationScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -203,10 +141,7 @@ export const UserScalarFieldEnum = {
   email: 'email',
   auth_user_id: 'auth_user_id',
   isFirstConnection: 'isFirstConnection',
-  etpToken: 'etpToken',
-  isBeta: 'isBeta',
-  language: 'language',
-  thorToken: 'thorToken'
+  language: 'language'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -226,82 +161,6 @@ export const SynchronizationScalarFieldEnum = {
 } as const
 
 export type SynchronizationScalarFieldEnum = (typeof SynchronizationScalarFieldEnum)[keyof typeof SynchronizationScalarFieldEnum]
-
-
-export const TeamScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  userId: 'userId',
-  traderIds: 'traderIds',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TeamScalarFieldEnum = (typeof TeamScalarFieldEnum)[keyof typeof TeamScalarFieldEnum]
-
-
-export const TeamInvitationScalarFieldEnum = {
-  id: 'id',
-  teamId: 'teamId',
-  email: 'email',
-  invitedBy: 'invitedBy',
-  status: 'status',
-  expiresAt: 'expiresAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TeamInvitationScalarFieldEnum = (typeof TeamInvitationScalarFieldEnum)[keyof typeof TeamInvitationScalarFieldEnum]
-
-
-export const TeamManagerScalarFieldEnum = {
-  id: 'id',
-  teamId: 'teamId',
-  managerId: 'managerId',
-  access: 'access',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type TeamManagerScalarFieldEnum = (typeof TeamManagerScalarFieldEnum)[keyof typeof TeamManagerScalarFieldEnum]
-
-
-export const BusinessScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  userId: 'userId',
-  traderIds: 'traderIds',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type BusinessScalarFieldEnum = (typeof BusinessScalarFieldEnum)[keyof typeof BusinessScalarFieldEnum]
-
-
-export const BusinessManagerScalarFieldEnum = {
-  id: 'id',
-  businessId: 'businessId',
-  managerId: 'managerId',
-  access: 'access',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type BusinessManagerScalarFieldEnum = (typeof BusinessManagerScalarFieldEnum)[keyof typeof BusinessManagerScalarFieldEnum]
-
-
-export const BusinessInvitationScalarFieldEnum = {
-  id: 'id',
-  businessId: 'businessId',
-  email: 'email',
-  invitedBy: 'invitedBy',
-  status: 'status',
-  expiresAt: 'expiresAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type BusinessInvitationScalarFieldEnum = (typeof BusinessInvitationScalarFieldEnum)[keyof typeof BusinessInvitationScalarFieldEnum]
 
 
 export const GroupScalarFieldEnum = {
@@ -391,18 +250,6 @@ export const DashboardLayoutScalarFieldEnum = {
 export type DashboardLayoutScalarFieldEnum = (typeof DashboardLayoutScalarFieldEnum)[keyof typeof DashboardLayoutScalarFieldEnum]
 
 
-export const SubscriptionFeedbackScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  event: 'event',
-  createdAt: 'createdAt',
-  cancellationReason: 'cancellationReason',
-  feedback: 'feedback'
-} as const
-
-export type SubscriptionFeedbackScalarFieldEnum = (typeof SubscriptionFeedbackScalarFieldEnum)[keyof typeof SubscriptionFeedbackScalarFieldEnum]
-
-
 export const MoodScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -437,18 +284,6 @@ export const SharedScalarFieldEnum = {
 } as const
 
 export type SharedScalarFieldEnum = (typeof SharedScalarFieldEnum)[keyof typeof SharedScalarFieldEnum]
-
-
-export const ReferralScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  slug: 'slug',
-  referredUserIds: 'referredUserIds',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ReferralScalarFieldEnum = (typeof ReferralScalarFieldEnum)[keyof typeof ReferralScalarFieldEnum]
 
 
 export const FinancialEventScalarFieldEnum = {
@@ -490,63 +325,6 @@ export const NewsletterScalarFieldEnum = {
 } as const
 
 export type NewsletterScalarFieldEnum = (typeof NewsletterScalarFieldEnum)[keyof typeof NewsletterScalarFieldEnum]
-
-
-export const PostScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  content: 'content',
-  type: 'type',
-  status: 'status',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  screenshots: 'screenshots'
-} as const
-
-export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
-
-
-export const CommentScalarFieldEnum = {
-  id: 'id',
-  content: 'content',
-  postId: 'postId',
-  userId: 'userId',
-  parentId: 'parentId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
-
-
-export const VoteScalarFieldEnum = {
-  id: 'id',
-  type: 'type',
-  postId: 'postId',
-  userId: 'userId',
-  createdAt: 'createdAt'
-} as const
-
-export type VoteScalarFieldEnum = (typeof VoteScalarFieldEnum)[keyof typeof VoteScalarFieldEnum]
-
-
-export const OrderScalarFieldEnum = {
-  id: 'id',
-  accountId: 'accountId',
-  orderId: 'orderId',
-  orderAction: 'orderAction',
-  quantity: 'quantity',
-  averageFilledPrice: 'averageFilledPrice',
-  isOpeningOrder: 'isOpeningOrder',
-  time: 'time',
-  symbol: 'symbol',
-  instrumentType: 'instrumentType',
-  userId: 'userId',
-  createdAt: 'createdAt'
-} as const
-
-export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
 
 
 export const TradeAnalyticsScalarFieldEnum = {

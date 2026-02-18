@@ -50,21 +50,6 @@ export type Trade = Prisma.TradeModel
  */
 export type TickDetails = Prisma.TickDetailsModel
 /**
- * Model Subscription
- * 
- */
-export type Subscription = Prisma.SubscriptionModel
-/**
- * Model BusinessSubscription
- * 
- */
-export type BusinessSubscription = Prisma.BusinessSubscriptionModel
-/**
- * Model TeamSubscription
- * 
- */
-export type TeamSubscription = Prisma.TeamSubscriptionModel
-/**
  * Model Notification
  * 
  */
@@ -79,36 +64,6 @@ export type User = Prisma.UserModel
  * 
  */
 export type Synchronization = Prisma.SynchronizationModel
-/**
- * Model Team
- * 
- */
-export type Team = Prisma.TeamModel
-/**
- * Model TeamInvitation
- * 
- */
-export type TeamInvitation = Prisma.TeamInvitationModel
-/**
- * Model TeamManager
- * 
- */
-export type TeamManager = Prisma.TeamManagerModel
-/**
- * Model Business
- * 
- */
-export type Business = Prisma.BusinessModel
-/**
- * Model BusinessManager
- * 
- */
-export type BusinessManager = Prisma.BusinessManagerModel
-/**
- * Model BusinessInvitation
- * 
- */
-export type BusinessInvitation = Prisma.BusinessInvitationModel
 /**
  * Model Group
  * 
@@ -130,11 +85,6 @@ export type Payout = Prisma.PayoutModel
  */
 export type DashboardLayout = Prisma.DashboardLayoutModel
 /**
- * Model SubscriptionFeedback
- * 
- */
-export type SubscriptionFeedback = Prisma.SubscriptionFeedbackModel
-/**
  * Model Mood
  * 
  */
@@ -144,11 +94,6 @@ export type Mood = Prisma.MoodModel
  * 
  */
 export type Shared = Prisma.SharedModel
-/**
- * Model Referral
- * 
- */
-export type Referral = Prisma.ReferralModel
 /**
  * Model FinancialEvent
  * 
@@ -164,26 +109,6 @@ export type Tag = Prisma.TagModel
  * 
  */
 export type Newsletter = Prisma.NewsletterModel
-/**
- * Model Post
- * 
- */
-export type Post = Prisma.PostModel
-/**
- * Model Comment
- * 
- */
-export type Comment = Prisma.CommentModel
-/**
- * Model Vote
- * 
- */
-export type Vote = Prisma.VoteModel
-/**
- * Model Order
- * 
- */
-export type Order = Prisma.OrderModel
 /**
  * Model TradeAnalytics
  * 

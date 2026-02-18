@@ -13,7 +13,6 @@ import {
   Account as PrismaAccount,
   Payout as PrismaPayout,
   DashboardLayout as PrismaDashboardLayout,
-  Subscription as PrismaSubscription,
   Tag,
 } from "@/prisma/generated/prisma/browser";
 import { SharedParams } from "@/server/shared";
@@ -312,7 +311,6 @@ export const DataProvider: React.FC<{
   // Get store values
   const user = useUserStore((state) => state.user);
   const setUser = useUserStore((state) => state.setUser);
-  const setSubscription = useUserStore((state) => state.setSubscription);
   const setTags = useUserStore((state) => state.setTags);
   const setAccounts = useUserStore((state) => state.setAccounts);
   const setGroups = useUserStore((state) => state.setGroups);
@@ -323,7 +321,6 @@ export const DataProvider: React.FC<{
   const groups = useUserStore((state) => state.groups);
   const accounts = useUserStore((state) => state.accounts);
   const setSupabaseUser = useUserStore((state) => state.setSupabaseUser);
-  const subscription = useUserStore((state) => state.subscription);
   const setTickDetails = useTickDetailsStore((state) => state.setTickDetails);
   const tickDetails = useTickDetailsStore((state) => state.tickDetails);
   const setEvents = useFinancialEventsStore((state) => state.setEvents);
@@ -406,7 +403,6 @@ export const DataProvider: React.FC<{
         setTrades(trades as PrismaTrade[]);
         // RESET ALL OTHER STATES
         setUser(null);
-        setSubscription(null);
         setTags([]);
         setGroups([]);
         setMoods([]);
@@ -502,7 +498,6 @@ export const DataProvider: React.FC<{
       setAccounts(accountsWithMetrics);
 
       setUser(data.userData);
-      setSubscription(data.subscription as PrismaSubscription | null);
       setTags(data.tags);
       setGroups(data.groups);
       setMoods(data.moodHistory);
@@ -603,12 +598,11 @@ export const DataProvider: React.FC<{
 
   const refreshUserDataOnly = useCallback(
     async (
-      options?: { force?: boolean; includeStripe?: boolean; withLoading?: boolean }
+      options?: { force?: boolean; withLoading?: boolean }
     ) => {
       if (!supabaseUser?.id) return;
       const {
         force = false,
-        includeStripe = false,
         withLoading = true,
       } = options || {};
 
@@ -628,7 +622,6 @@ export const DataProvider: React.FC<{
         setAccounts(accountsWithMetrics);
 
         setUser(data.userData);
-        setSubscription(data.subscription as PrismaSubscription | null);
         setTags(data.tags);
         setGroups(data.groups);
         setMoods(data.moodHistory);
@@ -645,7 +638,6 @@ export const DataProvider: React.FC<{
       supabaseUser?.id,
       setAccounts,
       setUser,
-      setSubscription,
       setTags,
       setGroups,
       setMoods,
@@ -665,7 +657,6 @@ export const DataProvider: React.FC<{
         await refreshTradesOnly({ force, withLoading: false });
         await refreshUserDataOnly({
           force,
-          includeStripe: true,
           withLoading: false,
         });
         console.log("[refreshAllData] Successfully refreshed trades and user data");

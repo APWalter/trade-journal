@@ -1,7 +1,7 @@
 'use server'
 
 import { getShared } from './shared'
-import { TickDetails, User, Tag, DashboardLayout, FinancialEvent, Mood, Trade, Subscription } from '@/prisma/generated/prisma/client'
+import { TickDetails, User, Tag, DashboardLayout, FinancialEvent, Mood, Trade } from '@/prisma/generated/prisma/client'
 import { GroupWithAccounts } from './groups'
 import { getCurrentLocale } from '@/locales/server'
 import { prisma } from '@/lib/prisma'
@@ -55,7 +55,6 @@ export async function loadSharedData(slug: string): Promise<SharedDataResponse> 
 
 export async function getUserData(forceRefresh: boolean = false): Promise<{
   userData: User | null;
-  subscription: Subscription | null;
   tickDetails: TickDetails[];
   tags: Tag[];
   accounts: Account[];
@@ -73,12 +72,9 @@ export async function getUserData(forceRefresh: boolean = false): Promise<{
     revalidateTag(`user-data-${userId}`, { expire: 0 })
     
     // Fetch all data in a single transaction
-    const [userData, subscription, tickDetails, accounts, groups, tags, financialEvents, moodHistory] = await prisma.$transaction([
+    const [userData, tickDetails, accounts, groups, tags, financialEvents, moodHistory] = await prisma.$transaction([
       prisma.user.findUnique({
         where: { id: userId }
-      }),
-      prisma.subscription.findUnique({
-        where: { userId: userId }
       }),
       prisma.tickDetails.findMany(),
       prisma.account.findMany({
@@ -107,7 +103,6 @@ export async function getUserData(forceRefresh: boolean = false): Promise<{
 
     return {
       userData,
-      subscription,
       tickDetails,
       tags,
       accounts,
@@ -124,18 +119,15 @@ export async function getUserData(forceRefresh: boolean = false): Promise<{
       console.log(`[Cache MISS] Fetching core user data for user ${userId}`)
 
       // Cache only lightweight, stable data
-      const [userData, subscription, tickDetails] = await Promise.all([
+      const [userData, tickDetails] = await Promise.all([
         prisma.user.findUnique({
           where: { id: userId }
-        }),
-        prisma.subscription.findUnique({
-          where: { userId: userId }
         }),
         prisma.tickDetails.findMany()
       ])
 
       console.log(`[getUserData] Core data fetch completed in ${(performance.now() - start).toFixed(2)}ms`)
-      return { userData, subscription, tickDetails }
+      return { userData, tickDetails }
     },
     [`user-data-${userId}-${locale}`],
     {
@@ -172,7 +164,6 @@ export async function getUserData(forceRefresh: boolean = false): Promise<{
 
   return {
     userData: core.userData,
-    subscription: core.subscription,
     tickDetails: core.tickDetails,
     tags,
     accounts,

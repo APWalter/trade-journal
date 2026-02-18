@@ -1,0 +1,5 @@
+# Never read real secret files
+.env
+.env.local
+.env.*
+!.env.example
