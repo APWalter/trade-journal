@@ -107,7 +107,7 @@ export default function FileUpload({
         throw new Error("Invalid import type")
       }
 
-      // If platform doesn't have processFile (e.g., Rithmic Sync), skip processing
+      // If platform doesn't have processFile, skip processing
       if (!platform.processFile) {
         return
       }

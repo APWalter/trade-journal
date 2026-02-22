@@ -95,9 +95,10 @@ export default async function proxy(req: NextRequest) {
     response.cookies.set(cookie.name, cookie.value, { ...cookie })
   })
 
-  // 3. Redirect unauthenticated users to /authentication (unless dev mode is enabled)
+  // 3. Redirect unauthenticated users to /authentication (unless dev mode or already on auth page)
   const isDevMode = process.env.NEXT_PUBLIC_DEV_MODE === "true"
-  if (!user && !isDevMode) {
+  const isAuthPage = pathname.includes("/authentication")
+  if (!user && !isDevMode && !isAuthPage) {
     const locale = req.nextUrl.pathname.split("/")[1] || "en"
     return NextResponse.redirect(new URL(`/${locale}/authentication`, req.url))
   }

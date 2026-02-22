@@ -2,71 +2,44 @@
 
 import { createContext, useContext, useMemo, useCallback, ReactNode } from "react";
 import {
-  RithmicSyncContextProvider,
-  useRithmicSyncContext,
-} from "@/context/rithmic-sync-context";
-import {
-  TradovateSyncContextProvider,
-  useTradovateSyncContext,
-} from "@/context/tradovate-sync-context";
-
-type SyncService = "rithmic" | "tradovate";
+  SchwabSyncContextProvider,
+  useSchwabSyncContext,
+} from "@/context/schwab-sync-context";
 
 interface ManualSyncResult {
-  service: SyncService;
   success: boolean;
   message: string;
-  rateLimited?: boolean;
 }
 
 interface SyncContextValue {
-  rithmic: ReturnType<typeof useRithmicSyncContext>;
-  tradovate: ReturnType<typeof useTradovateSyncContext>;
-  manualSync: (
-    service: SyncService,
-    identifier: string
-  ) => Promise<ManualSyncResult | undefined>;
+  schwab: ReturnType<typeof useSchwabSyncContext>;
+  manualSync: (accountId: string) => Promise<ManualSyncResult | undefined>;
 }
 
 const SyncContext = createContext<SyncContextValue | undefined>(undefined);
 
 function SyncContextBridge({ children }: { children: ReactNode }) {
-  const rithmic = useRithmicSyncContext();
-  const tradovate = useTradovateSyncContext();
+  const schwab = useSchwabSyncContext();
 
   const manualSync = useCallback<SyncContextValue["manualSync"]>(
-    async (service, identifier) => {
-      if (service === "rithmic") {
-        const result = await rithmic.performSyncForCredential(identifier);
-        if (!result) return;
-
-        return {
-          service,
-          success: result.success,
-          message: result.message,
-          rateLimited: result.rateLimited,
-        };
-      }
-
-      const result = await tradovate.performSyncForAccount(identifier);
+    async (accountId) => {
+      const result = await schwab.performSyncForAccount(accountId);
       if (!result) return;
 
       return {
-        service,
         success: result.success,
         message: result.message,
       };
     },
-    [rithmic, tradovate]
+    [schwab]
   );
 
   const value = useMemo(
     () => ({
-      rithmic,
-      tradovate,
+      schwab,
       manualSync,
     }),
-    [manualSync, rithmic, tradovate]
+    [manualSync, schwab]
   );
 
   return <SyncContext.Provider value={value}>{children}</SyncContext.Provider>;
@@ -74,11 +47,9 @@ function SyncContextBridge({ children }: { children: ReactNode }) {
 
 export function SyncContextProvider({ children }: { children: ReactNode }) {
   return (
-    <RithmicSyncContextProvider>
-      <TradovateSyncContextProvider>
-        <SyncContextBridge>{children}</SyncContextBridge>
-      </TradovateSyncContextProvider>
-    </RithmicSyncContextProvider>
+    <SchwabSyncContextProvider>
+      <SyncContextBridge>{children}</SyncContextBridge>
+    </SchwabSyncContextProvider>
   );
 }
 
