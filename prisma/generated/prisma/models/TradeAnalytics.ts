@@ -33,6 +33,10 @@ export type TradeAnalyticsAvgAggregateOutputType = {
   priceDifference: number | null
   riskRewardRatio: number | null
   efficiency: number | null
+  ema9: number | null
+  ema20: number | null
+  ema200: number | null
+  vwap: number | null
 }
 
 export type TradeAnalyticsSumAggregateOutputType = {
@@ -42,6 +46,10 @@ export type TradeAnalyticsSumAggregateOutputType = {
   priceDifference: number | null
   riskRewardRatio: number | null
   efficiency: number | null
+  ema9: number | null
+  ema20: number | null
+  ema200: number | null
+  vwap: number | null
 }
 
 export type TradeAnalyticsMinAggregateOutputType = {
@@ -54,6 +62,10 @@ export type TradeAnalyticsMinAggregateOutputType = {
   riskRewardRatio: number | null
   efficiency: number | null
   dataSource: string | null
+  ema9: number | null
+  ema20: number | null
+  ema200: number | null
+  vwap: number | null
   computedAt: Date | null
   updatedAt: Date | null
 }
@@ -68,6 +80,10 @@ export type TradeAnalyticsMaxAggregateOutputType = {
   riskRewardRatio: number | null
   efficiency: number | null
   dataSource: string | null
+  ema9: number | null
+  ema20: number | null
+  ema200: number | null
+  vwap: number | null
   computedAt: Date | null
   updatedAt: Date | null
 }
@@ -82,6 +98,10 @@ export type TradeAnalyticsCountAggregateOutputType = {
   riskRewardRatio: number
   efficiency: number
   dataSource: number
+  ema9: number
+  ema20: number
+  ema200: number
+  vwap: number
   computedAt: number
   updatedAt: number
   _all: number
@@ -95,6 +115,10 @@ export type TradeAnalyticsAvgAggregateInputType = {
   priceDifference?: true
   riskRewardRatio?: true
   efficiency?: true
+  ema9?: true
+  ema20?: true
+  ema200?: true
+  vwap?: true
 }
 
 export type TradeAnalyticsSumAggregateInputType = {
@@ -104,6 +128,10 @@ export type TradeAnalyticsSumAggregateInputType = {
   priceDifference?: true
   riskRewardRatio?: true
   efficiency?: true
+  ema9?: true
+  ema20?: true
+  ema200?: true
+  vwap?: true
 }
 
 export type TradeAnalyticsMinAggregateInputType = {
@@ -116,6 +144,10 @@ export type TradeAnalyticsMinAggregateInputType = {
   riskRewardRatio?: true
   efficiency?: true
   dataSource?: true
+  ema9?: true
+  ema20?: true
+  ema200?: true
+  vwap?: true
   computedAt?: true
   updatedAt?: true
 }
@@ -130,6 +162,10 @@ export type TradeAnalyticsMaxAggregateInputType = {
   riskRewardRatio?: true
   efficiency?: true
   dataSource?: true
+  ema9?: true
+  ema20?: true
+  ema200?: true
+  vwap?: true
   computedAt?: true
   updatedAt?: true
 }
@@ -144,6 +180,10 @@ export type TradeAnalyticsCountAggregateInputType = {
   riskRewardRatio?: true
   efficiency?: true
   dataSource?: true
+  ema9?: true
+  ema20?: true
+  ema200?: true
+  vwap?: true
   computedAt?: true
   updatedAt?: true
   _all?: true
@@ -245,6 +285,10 @@ export type TradeAnalyticsGroupByOutputType = {
   riskRewardRatio: number | null
   efficiency: number | null
   dataSource: string
+  ema9: number | null
+  ema20: number | null
+  ema200: number | null
+  vwap: number | null
   computedAt: Date
   updatedAt: Date
   _count: TradeAnalyticsCountAggregateOutputType | null
@@ -282,6 +326,10 @@ export type TradeAnalyticsWhereInput = {
   riskRewardRatio?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   efficiency?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   dataSource?: Prisma.StringFilter<"TradeAnalytics"> | string
+  ema9?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
+  ema20?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
+  ema200?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
+  vwap?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   computedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
 }
@@ -296,6 +344,10 @@ export type TradeAnalyticsOrderByWithRelationInput = {
   riskRewardRatio?: Prisma.SortOrderInput | Prisma.SortOrder
   efficiency?: Prisma.SortOrderInput | Prisma.SortOrder
   dataSource?: Prisma.SortOrder
+  ema9?: Prisma.SortOrderInput | Prisma.SortOrder
+  ema20?: Prisma.SortOrderInput | Prisma.SortOrder
+  ema200?: Prisma.SortOrderInput | Prisma.SortOrder
+  vwap?: Prisma.SortOrderInput | Prisma.SortOrder
   computedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -313,6 +365,10 @@ export type TradeAnalyticsWhereUniqueInput = Prisma.AtLeast<{
   riskRewardRatio?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   efficiency?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   dataSource?: Prisma.StringFilter<"TradeAnalytics"> | string
+  ema9?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
+  ema20?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
+  ema200?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
+  vwap?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   computedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
 }, "id" | "tradeId">
@@ -327,6 +383,10 @@ export type TradeAnalyticsOrderByWithAggregationInput = {
   riskRewardRatio?: Prisma.SortOrderInput | Prisma.SortOrder
   efficiency?: Prisma.SortOrderInput | Prisma.SortOrder
   dataSource?: Prisma.SortOrder
+  ema9?: Prisma.SortOrderInput | Prisma.SortOrder
+  ema20?: Prisma.SortOrderInput | Prisma.SortOrder
+  ema200?: Prisma.SortOrderInput | Prisma.SortOrder
+  vwap?: Prisma.SortOrderInput | Prisma.SortOrder
   computedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.TradeAnalyticsCountOrderByAggregateInput
@@ -349,6 +409,10 @@ export type TradeAnalyticsScalarWhereWithAggregatesInput = {
   riskRewardRatio?: Prisma.FloatNullableWithAggregatesFilter<"TradeAnalytics"> | number | null
   efficiency?: Prisma.FloatNullableWithAggregatesFilter<"TradeAnalytics"> | number | null
   dataSource?: Prisma.StringWithAggregatesFilter<"TradeAnalytics"> | string
+  ema9?: Prisma.FloatNullableWithAggregatesFilter<"TradeAnalytics"> | number | null
+  ema20?: Prisma.FloatNullableWithAggregatesFilter<"TradeAnalytics"> | number | null
+  ema200?: Prisma.FloatNullableWithAggregatesFilter<"TradeAnalytics"> | number | null
+  vwap?: Prisma.FloatNullableWithAggregatesFilter<"TradeAnalytics"> | number | null
   computedAt?: Prisma.DateTimeWithAggregatesFilter<"TradeAnalytics"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TradeAnalytics"> | Date | string
 }
@@ -363,6 +427,10 @@ export type TradeAnalyticsCreateInput = {
   riskRewardRatio?: number | null
   efficiency?: number | null
   dataSource?: string
+  ema9?: number | null
+  ema20?: number | null
+  ema200?: number | null
+  vwap?: number | null
   computedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -377,6 +445,10 @@ export type TradeAnalyticsUncheckedCreateInput = {
   riskRewardRatio?: number | null
   efficiency?: number | null
   dataSource?: string
+  ema9?: number | null
+  ema20?: number | null
+  ema200?: number | null
+  vwap?: number | null
   computedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -391,6 +463,10 @@ export type TradeAnalyticsUpdateInput = {
   riskRewardRatio?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   efficiency?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dataSource?: Prisma.StringFieldUpdateOperationsInput | string
+  ema9?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema20?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema200?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -405,6 +481,10 @@ export type TradeAnalyticsUncheckedUpdateInput = {
   riskRewardRatio?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   efficiency?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dataSource?: Prisma.StringFieldUpdateOperationsInput | string
+  ema9?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema20?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema200?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -419,6 +499,10 @@ export type TradeAnalyticsCreateManyInput = {
   riskRewardRatio?: number | null
   efficiency?: number | null
   dataSource?: string
+  ema9?: number | null
+  ema20?: number | null
+  ema200?: number | null
+  vwap?: number | null
   computedAt?: Date | string
   updatedAt?: Date | string
 }
@@ -433,6 +517,10 @@ export type TradeAnalyticsUpdateManyMutationInput = {
   riskRewardRatio?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   efficiency?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dataSource?: Prisma.StringFieldUpdateOperationsInput | string
+  ema9?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema20?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema200?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -447,6 +535,10 @@ export type TradeAnalyticsUncheckedUpdateManyInput = {
   riskRewardRatio?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   efficiency?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   dataSource?: Prisma.StringFieldUpdateOperationsInput | string
+  ema9?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema20?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema200?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -461,6 +553,10 @@ export type TradeAnalyticsCountOrderByAggregateInput = {
   riskRewardRatio?: Prisma.SortOrder
   efficiency?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
+  ema9?: Prisma.SortOrder
+  ema20?: Prisma.SortOrder
+  ema200?: Prisma.SortOrder
+  vwap?: Prisma.SortOrder
   computedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -472,6 +568,10 @@ export type TradeAnalyticsAvgOrderByAggregateInput = {
   priceDifference?: Prisma.SortOrder
   riskRewardRatio?: Prisma.SortOrder
   efficiency?: Prisma.SortOrder
+  ema9?: Prisma.SortOrder
+  ema20?: Prisma.SortOrder
+  ema200?: Prisma.SortOrder
+  vwap?: Prisma.SortOrder
 }
 
 export type TradeAnalyticsMaxOrderByAggregateInput = {
@@ -484,6 +584,10 @@ export type TradeAnalyticsMaxOrderByAggregateInput = {
   riskRewardRatio?: Prisma.SortOrder
   efficiency?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
+  ema9?: Prisma.SortOrder
+  ema20?: Prisma.SortOrder
+  ema200?: Prisma.SortOrder
+  vwap?: Prisma.SortOrder
   computedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -498,6 +602,10 @@ export type TradeAnalyticsMinOrderByAggregateInput = {
   riskRewardRatio?: Prisma.SortOrder
   efficiency?: Prisma.SortOrder
   dataSource?: Prisma.SortOrder
+  ema9?: Prisma.SortOrder
+  ema20?: Prisma.SortOrder
+  ema200?: Prisma.SortOrder
+  vwap?: Prisma.SortOrder
   computedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -509,6 +617,10 @@ export type TradeAnalyticsSumOrderByAggregateInput = {
   priceDifference?: Prisma.SortOrder
   riskRewardRatio?: Prisma.SortOrder
   efficiency?: Prisma.SortOrder
+  ema9?: Prisma.SortOrder
+  ema20?: Prisma.SortOrder
+  ema200?: Prisma.SortOrder
+  vwap?: Prisma.SortOrder
 }
 
 
@@ -523,6 +635,10 @@ export type TradeAnalyticsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   riskRewardRatio?: boolean
   efficiency?: boolean
   dataSource?: boolean
+  ema9?: boolean
+  ema20?: boolean
+  ema200?: boolean
+  vwap?: boolean
   computedAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tradeAnalytics"]>
@@ -537,6 +653,10 @@ export type TradeAnalyticsSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   riskRewardRatio?: boolean
   efficiency?: boolean
   dataSource?: boolean
+  ema9?: boolean
+  ema20?: boolean
+  ema200?: boolean
+  vwap?: boolean
   computedAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tradeAnalytics"]>
@@ -551,6 +671,10 @@ export type TradeAnalyticsSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   riskRewardRatio?: boolean
   efficiency?: boolean
   dataSource?: boolean
+  ema9?: boolean
+  ema20?: boolean
+  ema200?: boolean
+  vwap?: boolean
   computedAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["tradeAnalytics"]>
@@ -565,11 +689,15 @@ export type TradeAnalyticsSelectScalar = {
   riskRewardRatio?: boolean
   efficiency?: boolean
   dataSource?: boolean
+  ema9?: boolean
+  ema20?: boolean
+  ema200?: boolean
+  vwap?: boolean
   computedAt?: boolean
   updatedAt?: boolean
 }
 
-export type TradeAnalyticsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tradeId" | "mae" | "mfe" | "entryPriceFromData" | "priceDifference" | "riskRewardRatio" | "efficiency" | "dataSource" | "computedAt" | "updatedAt", ExtArgs["result"]["tradeAnalytics"]>
+export type TradeAnalyticsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tradeId" | "mae" | "mfe" | "entryPriceFromData" | "priceDifference" | "riskRewardRatio" | "efficiency" | "dataSource" | "ema9" | "ema20" | "ema200" | "vwap" | "computedAt" | "updatedAt", ExtArgs["result"]["tradeAnalytics"]>
 
 export type $TradeAnalyticsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TradeAnalytics"
@@ -584,6 +712,10 @@ export type $TradeAnalyticsPayload<ExtArgs extends runtime.Types.Extensions.Inte
     riskRewardRatio: number | null
     efficiency: number | null
     dataSource: string
+    ema9: number | null
+    ema20: number | null
+    ema200: number | null
+    vwap: number | null
     computedAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["tradeAnalytics"]>
@@ -1018,6 +1150,10 @@ export interface TradeAnalyticsFieldRefs {
   readonly riskRewardRatio: Prisma.FieldRef<"TradeAnalytics", 'Float'>
   readonly efficiency: Prisma.FieldRef<"TradeAnalytics", 'Float'>
   readonly dataSource: Prisma.FieldRef<"TradeAnalytics", 'String'>
+  readonly ema9: Prisma.FieldRef<"TradeAnalytics", 'Float'>
+  readonly ema20: Prisma.FieldRef<"TradeAnalytics", 'Float'>
+  readonly ema200: Prisma.FieldRef<"TradeAnalytics", 'Float'>
+  readonly vwap: Prisma.FieldRef<"TradeAnalytics", 'Float'>
   readonly computedAt: Prisma.FieldRef<"TradeAnalytics", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"TradeAnalytics", 'DateTime'>
 }

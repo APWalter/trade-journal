@@ -289,6 +289,10 @@ model TradeAnalytics {
   riskRewardRatio    Float?
   efficiency         Float?
   dataSource         String   @default("DATABENTO")
+  ema9               Float?
+  ema20              Float?
+  ema200             Float?
+  vwap               Float?
   computedAt         DateTime @default(now())
   updatedAt          DateTime @updatedAt
 

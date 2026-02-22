@@ -1894,6 +1894,10 @@ export const TradeAnalyticsScalarFieldEnum = {
   riskRewardRatio: 'riskRewardRatio',
   efficiency: 'efficiency',
   dataSource: 'dataSource',
+  ema9: 'ema9',
+  ema20: 'ema20',
+  ema200: 'ema200',
+  vwap: 'vwap',
   computedAt: 'computedAt',
   updatedAt: 'updatedAt'
 } as const
