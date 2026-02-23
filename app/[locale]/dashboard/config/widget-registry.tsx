@@ -33,6 +33,7 @@ import DailyTickTargetChart from '../components/charts/daily-tick-target'
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from 'recharts'
 import { MindsetWidget } from '../components/mindset/mindset-widget'
 import ChatWidget from '../components/chat/chat'
+import { JournalFeed } from '../components/mindset/journal-feed'
 import { useI18n } from '@/locales/client'
 import { translateWeekday } from '@/lib/translation-utils'
 // import MarketChart from '../components/market/market-chart'
@@ -589,15 +590,30 @@ export const WIDGET_REGISTRY: Record<WidgetType, WidgetConfig> = {
     getComponent: ({ size }) => <RiskRewardRatioCard size={size} />,
     getPreview: () => <RiskRewardRatioCard size="tiny" />
   },
-  // marketChart: {
-  //   type: 'marketChart',
-  //   defaultSize: 'large',
-  //   allowedSizes: ['small', 'medium', 'large'],
-  //   category: 'charts',
-  //   previewHeight: 300,
-  //   getComponent: ({ size }) => <MarketChart />,
-  //   getPreview: () => <MarketChart />
-  // },
+  journalFeed: {
+    type: 'journalFeed',
+    defaultSize: 'large',
+    allowedSizes: ['medium', 'large'],
+    category: 'other',
+    previewHeight: 300,
+    getComponent: ({ size }) => <JournalFeed size={size} />,
+    getPreview: () => (
+      <Card className="h-[300px]">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm font-medium">Journal</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="border rounded-lg p-3 space-y-1">
+              <div className="h-3 w-32 bg-muted rounded" />
+              <div className="h-2 w-full bg-muted/60 rounded" />
+              <div className="h-2 w-3/4 bg-muted/40 rounded" />
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    )
+  },
 }
 
 export function getWidgetsByCategory(category: WidgetConfig['category']) {

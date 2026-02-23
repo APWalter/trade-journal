@@ -5,6 +5,8 @@ import { TradeTableReview } from "./components/tables/trade-table-review";
 import { AccountsOverview } from "./components/accounts/accounts-overview";
 import { AnalysisOverview } from "./components/analysis/analysis-overview";
 import WidgetCanvas from "./components/widget-canvas";
+import { JournalFeed } from "./components/mindset/journal-feed";
+import ChatWidget from "./components/chat/chat";
 import { useEffect, useRef } from "react";
 import { useI18n } from "@/locales/client";
 
@@ -132,6 +134,12 @@ export default function Home() {
             <TabsTrigger value="accounts">
               {t("dashboard.tabs.accounts")}
             </TabsTrigger>
+            <TabsTrigger value="journal">
+              Journal
+            </TabsTrigger>
+            <TabsTrigger value="ai">
+              AI Coach
+            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -145,6 +153,14 @@ export default function Home() {
 
         <TabsContent value="widgets" className="px-4">
           <WidgetCanvas />
+        </TabsContent>
+
+        <TabsContent value="journal" className="h-[calc(100vh-var(--navbar-height)-var(--tabs-height)-16px)] p-4">
+          <JournalFeed size="large" />
+        </TabsContent>
+
+        <TabsContent value="ai" className="h-[calc(100vh-var(--navbar-height)-var(--tabs-height)-16px)] p-4">
+          <ChatWidget size="large" />
         </TabsContent>
       </Tabs>
     </main>

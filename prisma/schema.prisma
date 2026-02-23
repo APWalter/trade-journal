@@ -32,6 +32,7 @@ model Trade {
   imageBase64Second String?
   groupId           String?  @default("")
   images            String[] @default([])
+  analytics         TradeAnalytics?
 
   @@index([accountNumber])
   @@index([groupId])
@@ -282,6 +283,7 @@ model Newsletter {
 model TradeAnalytics {
   id                 String   @id @default(uuid())
   tradeId            String   @unique
+  trade              Trade    @relation(fields: [tradeId], references: [id], onDelete: Cascade)
   mae                Float    @default(0)
   mfe                Float    @default(0)
   entryPriceFromData Float?

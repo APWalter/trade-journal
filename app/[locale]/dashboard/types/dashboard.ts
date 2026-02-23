@@ -26,6 +26,7 @@ export type WidgetType =
   | 'tagWidget'
   | 'riskRewardRatio'
   | 'mindsetWidget'
+  | 'journalFeed'
   // | 'marketChart'
 export type WidgetSize = 'tiny' | 'small' | 'small-long' | 'medium' | 'large' | 'extra-large'
 

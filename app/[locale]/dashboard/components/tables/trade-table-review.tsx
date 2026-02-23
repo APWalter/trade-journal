@@ -1154,6 +1154,70 @@ export function TradeTableReview({ tradesParam, config }: TradeTableReviewProps)
         },
         size: 200,
       },
+      {
+        id: "ema9",
+        header: ({ column }) => (
+          <DataTableColumnHeader
+            column={column}
+            title="EMA 9"
+            tableId="trade-table"
+          />
+        ),
+        cell: ({ row }) => {
+          const analytics = (row.original as any).analytics;
+          if (!analytics?.ema9) return <span className="text-muted-foreground">--</span>;
+          return <span>${analytics.ema9.toFixed(2)}</span>;
+        },
+        size: 90,
+      },
+      {
+        id: "ema20",
+        header: ({ column }) => (
+          <DataTableColumnHeader
+            column={column}
+            title="EMA 20"
+            tableId="trade-table"
+          />
+        ),
+        cell: ({ row }) => {
+          const analytics = (row.original as any).analytics;
+          if (!analytics?.ema20) return <span className="text-muted-foreground">--</span>;
+          return <span>${analytics.ema20.toFixed(2)}</span>;
+        },
+        size: 90,
+      },
+      {
+        id: "ema200",
+        header: ({ column }) => (
+          <DataTableColumnHeader
+            column={column}
+            title="EMA 200"
+            tableId="trade-table"
+          />
+        ),
+        cell: ({ row }) => {
+          const analytics = (row.original as any).analytics;
+          if (!analytics?.ema200) return <span className="text-muted-foreground">--</span>;
+          return <span>${analytics.ema200.toFixed(2)}</span>;
+        },
+        size: 90,
+      },
+      {
+        id: "vwap",
+        header: ({ column }) => (
+          <DataTableColumnHeader
+            column={column}
+            title="VWAP"
+            tableId="trade-table"
+          />
+        ),
+        cell: ({ row }) => {
+          const analytics = (row.original as any).analytics;
+          if (!analytics?.vwap) return <span className="text-muted-foreground">--</span>;
+          return <span>${analytics.vwap.toFixed(2)}</span>;
+        },
+        size: 90,
+      },
     ],
     [t, timezone, tags, expanded, tickDetails, showPoints, getAllTradeIds, areAllTradesSelected, selectedTrades],
   );

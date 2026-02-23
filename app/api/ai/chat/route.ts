@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     });
 
     const result = streamText({
-      model: 'openai/gpt-5-mini',
+      model: 'google/gemini-2.0-flash',
       messages: convertedMessages,
       system: systemPrompt,
 

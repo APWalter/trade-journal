@@ -1,5 +1,7 @@
 'use server'
-import { Trade, Prisma, DashboardLayout } from '@/prisma/generated/prisma/client'
+import { Trade, TradeAnalytics, Prisma, DashboardLayout } from '@/prisma/generated/prisma/client'
+
+export type TradeWithAnalytics = Trade & { analytics: TradeAnalytics | null }
 import { revalidatePath, revalidateTag, updateTag } from 'next/cache'
 import { Widget, Layouts } from '@/app/[locale]/dashboard/types/dashboard'
 import { createClient, getUserId } from './auth'
@@ -142,7 +144,7 @@ export async function saveTradesAction(
 }
 
 // Create cache function dynamically for each user
-function getCachedTrades(userId: string, page: number, chunkSize: number): Promise<Trade[]> {
+function getCachedTrades(userId: string, page: number, chunkSize: number): Promise<TradeWithAnalytics[]> {
   return unstable_cache(
     async () => {
       console.log(`[Cache MISS] Fetching trades for user ${userId}`)
@@ -151,7 +153,8 @@ function getCachedTrades(userId: string, page: number, chunkSize: number): Promi
         where: { userId },
         orderBy: { entryDate: 'desc' },
         skip: (page - 1) * chunkSize,
-        take: chunkSize
+        take: chunkSize,
+        include: { analytics: true }
       })
     },
     [`trades-${userId}-${page}`],
@@ -163,7 +166,7 @@ function getCachedTrades(userId: string, page: number, chunkSize: number): Promi
 }
 
 
-export async function getTradesAction(userId: string | null = null, forceRefresh: boolean = false): Promise<Trade[]> {
+export async function getTradesAction(userId: string | null = null, forceRefresh: boolean = false): Promise<TradeWithAnalytics[]> {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user && !userId) {
@@ -177,7 +180,8 @@ export async function getTradesAction(userId: string | null = null, forceRefresh
 
     const trades = await prisma.trade.findMany({
       where: { userId: userId || user?.id },
-      orderBy: { entryDate: 'desc' }
+      orderBy: { entryDate: 'desc' },
+      include: { analytics: true }
     })
     console.log(`[getTrades] Force refresh - Found ${trades.length} trades`)
 
@@ -193,7 +197,7 @@ export async function getTradesAction(userId: string | null = null, forceRefresh
   const count = await prisma.trade.count({ where: { userId: effectiveUserId } })
   const chunkSize = 1000
   const totalPages = Math.ceil(count / chunkSize)
-  const trades: Trade[] = []
+  const trades: TradeWithAnalytics[] = []
   for (let page = 1; page <= totalPages; page++) {
     const pageTrades = await getCachedTrades(effectiveUserId, page, chunkSize)
     trades.push(...pageTrades)

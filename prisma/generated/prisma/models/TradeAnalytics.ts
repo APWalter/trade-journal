@@ -332,6 +332,7 @@ export type TradeAnalyticsWhereInput = {
   vwap?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   computedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
+  trade?: Prisma.XOR<Prisma.TradeScalarRelationFilter, Prisma.TradeWhereInput>
 }
 
 export type TradeAnalyticsOrderByWithRelationInput = {
@@ -350,6 +351,7 @@ export type TradeAnalyticsOrderByWithRelationInput = {
   vwap?: Prisma.SortOrderInput | Prisma.SortOrder
   computedAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  trade?: Prisma.TradeOrderByWithRelationInput
 }
 
 export type TradeAnalyticsWhereUniqueInput = Prisma.AtLeast<{
@@ -371,6 +373,7 @@ export type TradeAnalyticsWhereUniqueInput = Prisma.AtLeast<{
   vwap?: Prisma.FloatNullableFilter<"TradeAnalytics"> | number | null
   computedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"TradeAnalytics"> | Date | string
+  trade?: Prisma.XOR<Prisma.TradeScalarRelationFilter, Prisma.TradeWhereInput>
 }, "id" | "tradeId">
 
 export type TradeAnalyticsOrderByWithAggregationInput = {
@@ -419,7 +422,6 @@ export type TradeAnalyticsScalarWhereWithAggregatesInput = {
 
 export type TradeAnalyticsCreateInput = {
   id?: string
-  tradeId: string
   mae?: number
   mfe?: number
   entryPriceFromData?: number | null
@@ -433,6 +435,7 @@ export type TradeAnalyticsCreateInput = {
   vwap?: number | null
   computedAt?: Date | string
   updatedAt?: Date | string
+  trade: Prisma.TradeCreateNestedOneWithoutAnalyticsInput
 }
 
 export type TradeAnalyticsUncheckedCreateInput = {
@@ -455,7 +458,6 @@ export type TradeAnalyticsUncheckedCreateInput = {
 
 export type TradeAnalyticsUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tradeId?: Prisma.StringFieldUpdateOperationsInput | string
   mae?: Prisma.FloatFieldUpdateOperationsInput | number
   mfe?: Prisma.FloatFieldUpdateOperationsInput | number
   entryPriceFromData?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -469,6 +471,7 @@ export type TradeAnalyticsUpdateInput = {
   vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trade?: Prisma.TradeUpdateOneRequiredWithoutAnalyticsNestedInput
 }
 
 export type TradeAnalyticsUncheckedUpdateInput = {
@@ -509,7 +512,6 @@ export type TradeAnalyticsCreateManyInput = {
 
 export type TradeAnalyticsUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  tradeId?: Prisma.StringFieldUpdateOperationsInput | string
   mae?: Prisma.FloatFieldUpdateOperationsInput | number
   mfe?: Prisma.FloatFieldUpdateOperationsInput | number
   entryPriceFromData?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -541,6 +543,11 @@ export type TradeAnalyticsUncheckedUpdateManyInput = {
   vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TradeAnalyticsNullableScalarRelationFilter = {
+  is?: Prisma.TradeAnalyticsWhereInput | null
+  isNot?: Prisma.TradeAnalyticsWhereInput | null
 }
 
 export type TradeAnalyticsCountOrderByAggregateInput = {
@@ -623,6 +630,122 @@ export type TradeAnalyticsSumOrderByAggregateInput = {
   vwap?: Prisma.SortOrder
 }
 
+export type TradeAnalyticsCreateNestedOneWithoutTradeInput = {
+  create?: Prisma.XOR<Prisma.TradeAnalyticsCreateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedCreateWithoutTradeInput>
+  connectOrCreate?: Prisma.TradeAnalyticsCreateOrConnectWithoutTradeInput
+  connect?: Prisma.TradeAnalyticsWhereUniqueInput
+}
+
+export type TradeAnalyticsUncheckedCreateNestedOneWithoutTradeInput = {
+  create?: Prisma.XOR<Prisma.TradeAnalyticsCreateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedCreateWithoutTradeInput>
+  connectOrCreate?: Prisma.TradeAnalyticsCreateOrConnectWithoutTradeInput
+  connect?: Prisma.TradeAnalyticsWhereUniqueInput
+}
+
+export type TradeAnalyticsUpdateOneWithoutTradeNestedInput = {
+  create?: Prisma.XOR<Prisma.TradeAnalyticsCreateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedCreateWithoutTradeInput>
+  connectOrCreate?: Prisma.TradeAnalyticsCreateOrConnectWithoutTradeInput
+  upsert?: Prisma.TradeAnalyticsUpsertWithoutTradeInput
+  disconnect?: Prisma.TradeAnalyticsWhereInput | boolean
+  delete?: Prisma.TradeAnalyticsWhereInput | boolean
+  connect?: Prisma.TradeAnalyticsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TradeAnalyticsUpdateToOneWithWhereWithoutTradeInput, Prisma.TradeAnalyticsUpdateWithoutTradeInput>, Prisma.TradeAnalyticsUncheckedUpdateWithoutTradeInput>
+}
+
+export type TradeAnalyticsUncheckedUpdateOneWithoutTradeNestedInput = {
+  create?: Prisma.XOR<Prisma.TradeAnalyticsCreateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedCreateWithoutTradeInput>
+  connectOrCreate?: Prisma.TradeAnalyticsCreateOrConnectWithoutTradeInput
+  upsert?: Prisma.TradeAnalyticsUpsertWithoutTradeInput
+  disconnect?: Prisma.TradeAnalyticsWhereInput | boolean
+  delete?: Prisma.TradeAnalyticsWhereInput | boolean
+  connect?: Prisma.TradeAnalyticsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TradeAnalyticsUpdateToOneWithWhereWithoutTradeInput, Prisma.TradeAnalyticsUpdateWithoutTradeInput>, Prisma.TradeAnalyticsUncheckedUpdateWithoutTradeInput>
+}
+
+export type TradeAnalyticsCreateWithoutTradeInput = {
+  id?: string
+  mae?: number
+  mfe?: number
+  entryPriceFromData?: number | null
+  priceDifference?: number | null
+  riskRewardRatio?: number | null
+  efficiency?: number | null
+  dataSource?: string
+  ema9?: number | null
+  ema20?: number | null
+  ema200?: number | null
+  vwap?: number | null
+  computedAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TradeAnalyticsUncheckedCreateWithoutTradeInput = {
+  id?: string
+  mae?: number
+  mfe?: number
+  entryPriceFromData?: number | null
+  priceDifference?: number | null
+  riskRewardRatio?: number | null
+  efficiency?: number | null
+  dataSource?: string
+  ema9?: number | null
+  ema20?: number | null
+  ema200?: number | null
+  vwap?: number | null
+  computedAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type TradeAnalyticsCreateOrConnectWithoutTradeInput = {
+  where: Prisma.TradeAnalyticsWhereUniqueInput
+  create: Prisma.XOR<Prisma.TradeAnalyticsCreateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedCreateWithoutTradeInput>
+}
+
+export type TradeAnalyticsUpsertWithoutTradeInput = {
+  update: Prisma.XOR<Prisma.TradeAnalyticsUpdateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedUpdateWithoutTradeInput>
+  create: Prisma.XOR<Prisma.TradeAnalyticsCreateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedCreateWithoutTradeInput>
+  where?: Prisma.TradeAnalyticsWhereInput
+}
+
+export type TradeAnalyticsUpdateToOneWithWhereWithoutTradeInput = {
+  where?: Prisma.TradeAnalyticsWhereInput
+  data: Prisma.XOR<Prisma.TradeAnalyticsUpdateWithoutTradeInput, Prisma.TradeAnalyticsUncheckedUpdateWithoutTradeInput>
+}
+
+export type TradeAnalyticsUpdateWithoutTradeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  mae?: Prisma.FloatFieldUpdateOperationsInput | number
+  mfe?: Prisma.FloatFieldUpdateOperationsInput | number
+  entryPriceFromData?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priceDifference?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  riskRewardRatio?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  efficiency?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dataSource?: Prisma.StringFieldUpdateOperationsInput | string
+  ema9?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema20?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema200?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TradeAnalyticsUncheckedUpdateWithoutTradeInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  mae?: Prisma.FloatFieldUpdateOperationsInput | number
+  mfe?: Prisma.FloatFieldUpdateOperationsInput | number
+  entryPriceFromData?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  priceDifference?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  riskRewardRatio?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  efficiency?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dataSource?: Prisma.StringFieldUpdateOperationsInput | string
+  ema9?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema20?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  ema200?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  vwap?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  computedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 
 
 export type TradeAnalyticsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -641,6 +764,7 @@ export type TradeAnalyticsSelect<ExtArgs extends runtime.Types.Extensions.Intern
   vwap?: boolean
   computedAt?: boolean
   updatedAt?: boolean
+  trade?: boolean | Prisma.TradeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tradeAnalytics"]>
 
 export type TradeAnalyticsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -659,6 +783,7 @@ export type TradeAnalyticsSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   vwap?: boolean
   computedAt?: boolean
   updatedAt?: boolean
+  trade?: boolean | Prisma.TradeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tradeAnalytics"]>
 
 export type TradeAnalyticsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -677,6 +802,7 @@ export type TradeAnalyticsSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   vwap?: boolean
   computedAt?: boolean
   updatedAt?: boolean
+  trade?: boolean | Prisma.TradeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["tradeAnalytics"]>
 
 export type TradeAnalyticsSelectScalar = {
@@ -698,10 +824,21 @@ export type TradeAnalyticsSelectScalar = {
 }
 
 export type TradeAnalyticsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tradeId" | "mae" | "mfe" | "entryPriceFromData" | "priceDifference" | "riskRewardRatio" | "efficiency" | "dataSource" | "ema9" | "ema20" | "ema200" | "vwap" | "computedAt" | "updatedAt", ExtArgs["result"]["tradeAnalytics"]>
+export type TradeAnalyticsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  trade?: boolean | Prisma.TradeDefaultArgs<ExtArgs>
+}
+export type TradeAnalyticsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  trade?: boolean | Prisma.TradeDefaultArgs<ExtArgs>
+}
+export type TradeAnalyticsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  trade?: boolean | Prisma.TradeDefaultArgs<ExtArgs>
+}
 
 export type $TradeAnalyticsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "TradeAnalytics"
-  objects: {}
+  objects: {
+    trade: Prisma.$TradePayload<ExtArgs>
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     tradeId: string
@@ -1112,6 +1249,7 @@ readonly fields: TradeAnalyticsFieldRefs;
  */
 export interface Prisma__TradeAnalyticsClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  trade<T extends Prisma.TradeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TradeDefaultArgs<ExtArgs>>): Prisma.Prisma__TradeClient<runtime.Types.Result.GetResult<Prisma.$TradePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1173,6 +1311,10 @@ export type TradeAnalyticsFindUniqueArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
+  /**
    * Filter, which TradeAnalytics to fetch.
    */
   where: Prisma.TradeAnalyticsWhereUniqueInput
@@ -1191,6 +1333,10 @@ export type TradeAnalyticsFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ex
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
+  /**
    * Filter, which TradeAnalytics to fetch.
    */
   where: Prisma.TradeAnalyticsWhereUniqueInput
@@ -1208,6 +1354,10 @@ export type TradeAnalyticsFindFirstArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the TradeAnalytics
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
   /**
    * Filter, which TradeAnalytics to fetch.
    */
@@ -1257,6 +1407,10 @@ export type TradeAnalyticsFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
+  /**
    * Filter, which TradeAnalytics to fetch.
    */
   where?: Prisma.TradeAnalyticsWhereInput
@@ -1305,6 +1459,10 @@ export type TradeAnalyticsFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
+  /**
    * Filter, which TradeAnalytics to fetch.
    */
   where?: Prisma.TradeAnalyticsWhereInput
@@ -1348,6 +1506,10 @@ export type TradeAnalyticsCreateArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
+  /**
    * The data needed to create a TradeAnalytics.
    */
   data: Prisma.XOR<Prisma.TradeAnalyticsCreateInput, Prisma.TradeAnalyticsUncheckedCreateInput>
@@ -1381,6 +1543,10 @@ export type TradeAnalyticsCreateManyAndReturnArgs<ExtArgs extends runtime.Types.
    */
   data: Prisma.TradeAnalyticsCreateManyInput | Prisma.TradeAnalyticsCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1395,6 +1561,10 @@ export type TradeAnalyticsUpdateArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the TradeAnalytics
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
   /**
    * The data needed to update a TradeAnalytics.
    */
@@ -1447,6 +1617,10 @@ export type TradeAnalyticsUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.
    * Limit how many TradeAnalytics to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1461,6 +1635,10 @@ export type TradeAnalyticsUpsertArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the TradeAnalytics
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
   /**
    * The filter to search for the TradeAnalytics to update in case it exists.
    */
@@ -1487,6 +1665,10 @@ export type TradeAnalyticsDeleteArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the TradeAnalytics
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
   /**
    * Filter which TradeAnalytics to delete.
    */
@@ -1519,4 +1701,8 @@ export type TradeAnalyticsDefaultArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the TradeAnalytics
    */
   omit?: Prisma.TradeAnalyticsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TradeAnalyticsInclude<ExtArgs> | null
 }
