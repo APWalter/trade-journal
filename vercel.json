@@ -1,8 +1,1 @@
-{
-  "crons": [
-    {
-      "path": "/api/cron/investing?lang=en&db=true",
-      "schedule": "0 5 * * 1"
-    }
-  ]
-}
+{}
