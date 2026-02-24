@@ -18,6 +18,7 @@ import { saveJournal, getMoodForDay } from "@/server/journal";
 import { format } from "date-fns";
 import { useUserStore } from "../../../../../store/user-store";
 import { useMoodStore } from "@/store/mood-store";
+import { useTradesStore } from "@/store/trades-store";
 
 import { Skeleton } from "@/components/ui/skeleton";
 import { TiptapEditor } from "@/components/tiptap-editor";
@@ -45,6 +46,7 @@ export function DailyComment({ dayData, selectedDate }: DailyCommentProps) {
   const user = useUserStore((state) => state.user);
   const moodHistory = useMoodStore((state) => state.moods);
   const setMoodHistory = useMoodStore((state) => state.setMoods);
+  const trades = useTradesStore((state) => state.trades);
   const [comment, setComment] = React.useState<string>("");
   const [isSavingComment, setIsSavingComment] = React.useState(false);
   const [saveError, setSaveError] = React.useState<string | null>(null);
@@ -156,6 +158,7 @@ export function DailyComment({ dayData, selectedDate }: DailyCommentProps) {
             width="100%"
             collaboration={false}
             placeholder={t("mindset.journaling.placeholder")}
+            trades={trades}
           />
         )}
       </div>

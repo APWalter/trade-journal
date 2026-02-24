@@ -65,6 +65,7 @@ export function Journaling({
             selectedNews={selectedNews}
             onNewsSelection={onNewsSelection}
             date={date}
+            trades={trades}
           />
       </div>
 

@@ -36,8 +36,9 @@ import { useCurrentLocale, useI18n } from "@/locales/client";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase";
 import { useCompletion } from "@ai-sdk/react";
-import { FinancialEvent } from "@/prisma/generated/prisma/browser";
+import { FinancialEvent, Trade } from "@/prisma/generated/prisma/browser";
 import { z } from "zod";
+import { createTradeMentionExtension } from "@/components/tiptap/trade-mention";
 import { OptimizedBubbleMenu } from "@/components/tiptap/optimized-bubble-menu";
 import { ResponsiveMenuBar } from "@/components/tiptap/menu-bar";
 import { ActionSchema as EditorAction } from "@/app/api/ai/editor/schema";
@@ -114,6 +115,7 @@ interface TiptapEditorProps {
   onEmbedNews?: (newsIds: string[], action: "add" | "remove") => void;
   date?: Date;
   collaboration?: boolean;
+  trades?: Trade[];
 }
 
 export function TiptapEditor({
@@ -129,6 +131,7 @@ export function TiptapEditor({
   onEmbedNews,
   date,
   collaboration = false,
+  trades = [],
 }: TiptapEditorProps) {
   const t = useI18n();
   const user = useUserStore((state) => state.user);
@@ -138,6 +141,9 @@ export function TiptapEditor({
   const editorRef = useRef<ReturnType<typeof useEditor> | null>(null);
   // Prevent initial empty onUpdate from clearing externally provided content
   const isInitializingRef = useRef<boolean>(true);
+  // Mutable ref for trades so the mention extension always has the latest list
+  const tradesRef = useRef<Trade[]>(trades);
+  tradesRef.current = trades;
   // Cache of image hash -> public URL to avoid duplicate uploads
   const imageHashCacheRef = useRef<Map<string, string>>(new Map());
 
@@ -349,6 +355,8 @@ export function TiptapEditor({
       TableCell,
       // AI Completion extension
       AICompletionExtension,
+      // Trade mention extension (uses ref getter so trades can load async)
+      createTradeMentionExtension(() => tradesRef.current),
       // Collaboration extension (optional)
       ...(collaboration ? [Collaboration.configure({ document: ydoc })] : []),
     ],
@@ -389,6 +397,8 @@ export function TiptapEditor({
           "[&_.news-event]:border-l-4 [&_.news-event]:border-blue-500 [&_.news-event]:pl-4 [&_.news-event]:py-2 [&_.news-event]:my-2 [&_.news-event]:bg-blue-50 [&_.news-event]:dark:bg-blue-950/20 [&_.news-event]:rounded-r-lg",
           // Inline news event styles
           "[&_.news-event-inline]:text-sm [&_.news-event-inline]:text-blue-600 [&_.news-event-inline]:dark:text-blue-400 [&_.news-event-inline]:bg-blue-50 [&_.news-event-inline]:dark:bg-blue-950/20 [&_.news-event-inline]:px-2 [&_.news-event-inline]:py-1 [&_.news-event-inline]:rounded [&_.news-event-inline]:border-l-2 [&_.news-event-inline]:border-blue-500 [&_.news-event-inline]:my-1",
+          // Trade mention styles
+          "[&_.trade-mention]:inline-flex [&_.trade-mention]:items-center [&_.trade-mention]:px-1.5 [&_.trade-mention]:py-0.5 [&_.trade-mention]:rounded [&_.trade-mention]:text-xs [&_.trade-mention]:font-medium [&_.trade-mention]:bg-emerald-100 [&_.trade-mention]:text-emerald-800 [&_.trade-mention]:dark:bg-emerald-900/30 [&_.trade-mention]:dark:text-emerald-300 [&_.trade-mention]:cursor-default",
           // Placeholder styles - using CSS custom properties for complex selectors
           "[&_p.is-editor-empty:first-child::before]:text-gray-400 [&_p.is-editor-empty:first-child::before]:float-left [&_p.is-editor-empty:first-child::before]:h-0 [&_p.is-editor-empty:first-child::before]:pointer-events-none [&_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)]",
           // AI-generated content styles

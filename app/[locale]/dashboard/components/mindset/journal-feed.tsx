@@ -71,7 +71,7 @@ export function JournalFeed({ size }: JournalFeedProps) {
                     )}
                   </div>
                   <div
-                    className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed [&>p]:my-1"
+                    className="prose prose-sm dark:prose-invert max-w-none text-sm leading-relaxed [&>p]:my-1 [&_.trade-mention]:inline-flex [&_.trade-mention]:items-center [&_.trade-mention]:px-1.5 [&_.trade-mention]:py-0.5 [&_.trade-mention]:rounded [&_.trade-mention]:text-xs [&_.trade-mention]:font-medium [&_.trade-mention]:bg-emerald-100 [&_.trade-mention]:text-emerald-800 [&_.trade-mention]:dark:bg-emerald-900/30 [&_.trade-mention]:dark:text-emerald-300"
                     dangerouslySetInnerHTML={{ __html: entry.journalContent || '' }}
                   />
                 </div>
