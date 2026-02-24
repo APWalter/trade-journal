@@ -12,7 +12,29 @@
       "Bash(done)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next build)",
+      "Bash(npm run type-check:*)",
+      "Bash(npm run:*)",
+      "Bash(start:*)",
+      "Bash(npx prisma generate:*)",
+      "Bash(npx dotenv:*)",
+      "Bash(set:*)",
+      "Bash(source:*)",
+      "Bash(node -e:*)",
+      "Bash(npx prisma db push:*)",
+      "Bash(netstat:*)",
+      "WebSearch",
+      "WebFetch(domain:schwab-py.readthedocs.io)",
+      "WebFetch(domain:github.com)",
+      "Bash(npx tsx scripts/seed-mock-trades.ts)",
+      "Bash(npx next dev)",
+      "Bash(powershell -Command \"Stop-Process -Id 12752 -Force\")",
+      "Bash(git status:*)",
+      "Bash(git push:*)",
+      "Bash(npm install:*)",
+      "Bash(powershell -Command \"Stop-Process -Id 25388 -Force\")"
     ]
   }
 }
