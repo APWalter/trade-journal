@@ -123,10 +123,10 @@ export function createTradeMentionExtension(getTradesRef: () => Trade[]) {
     renderText({ node }) {
       return `@${node.attrs.label ?? node.attrs.id}`
     },
-    renderHTML({ node, HTMLAttributes }) {
+    renderHTML({ node }) {
       return [
         'span',
-        { ...HTMLAttributes, 'data-trade-id': node.attrs.id },
+        { class: 'trade-mention', 'data-trade-id': node.attrs.id },
         `${node.attrs.label ?? node.attrs.id}`,
       ]
     },
