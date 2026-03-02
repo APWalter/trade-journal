@@ -1,4 +1,5 @@
 import { streamText, stepCountIs, convertToModelMessages } from "ai";
+import { google } from "@ai-sdk/google";
 import { NextRequest } from "next/server";
 import { z } from 'zod/v3';
 import { getFinancialNews } from "./tools/get-financial-news";
@@ -55,7 +56,7 @@ export async function POST(req: NextRequest) {
     });
 
     const result = streamText({
-      model: 'google/gemini-2.0-flash',
+      model: google('gemini-2.0-flash'),
       messages: convertedMessages,
       system: systemPrompt,
 
