@@ -41,12 +41,34 @@ const initialFormData: TradeFormData = {
   commission: null,
 }
 
+// Auto-calculate PnL from entry/close prices, quantity, and side
+function calculatePnl(data: TradeFormData): number {
+  if (!data.entryPrice || !data.closePrice || !data.quantity) return data.pnl
+  if (data.side === 'long') {
+    return (data.closePrice - data.entryPrice) * data.quantity
+  }
+  return (data.entryPrice - data.closePrice) * data.quantity
+}
+
 export default function ManualProcessor({ processedTrades, setProcessedTrades, accountNumbers }: PlatformProcessorProps) {
   const existingTrades = useTradesStore((state => state.trades))
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [editingIndex, setEditingIndex] = useState<number | null>(null)
   const [formData, setFormData] = useState<TradeFormData>(initialFormData)
+  const [pnlManuallySet, setPnlManuallySet] = useState(false)
   const t = useI18n()
+
+  // Update form data and auto-calculate PnL unless user has manually set it
+  const updateFormData = useCallback((updates: Partial<TradeFormData>) => {
+    setFormData(prev => {
+      const updated = { ...prev, ...updates }
+      // Auto-calculate PnL if close price exists and user hasn't manually overridden
+      if (!pnlManuallySet && updated.closePrice && updated.entryPrice && updated.quantity) {
+        updated.pnl = calculatePnl(updated)
+      }
+      return updated
+    })
+  }, [pnlManuallySet])
 
   const existingCommissions = useMemo(() => {
     const commissions: { [key: string]: number } = {}
@@ -66,6 +88,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
   const handleAddRow = () => {
     setFormData(initialFormData)
     setEditingIndex(null)
+    setPnlManuallySet(false)
     setIsDialogOpen(true)
   }
 
@@ -84,6 +107,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
       commission: trade.commission || null,
     })
     setEditingIndex(index)
+    setPnlManuallySet(true) // Preserve existing PnL when editing
     setIsDialogOpen(true)
   }
 
@@ -284,15 +308,15 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
               <Input
                 id="instrument"
                 value={formData.instrument}
-                onChange={(e) => setFormData({ ...formData, instrument: e.target.value.toUpperCase() })}
-                placeholder="ES"
+                onChange={(e) => updateFormData({ instrument: e.target.value.toUpperCase() })}
+                placeholder="AAPL"
               />
             </div>
             <div className="space-y-2">
               <Label htmlFor="side">{t('import.manual.side')} *</Label>
               <Select
                 value={formData.side}
-                onValueChange={(value: 'long' | 'short') => setFormData({ ...formData, side: value })}
+                onValueChange={(value: 'long' | 'short') => updateFormData({ side: value })}
               >
                 <SelectTrigger>
                   <SelectValue />
@@ -310,7 +334,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
                 type="number"
                 step="1"
                 value={formData.quantity || ''}
-                onChange={(e) => setFormData({ ...formData, quantity: parseFloat(e.target.value) || 0 })}
+                onChange={(e) => updateFormData({ quantity: parseFloat(e.target.value) || 0 })}
               />
             </div>
             <div className="space-y-2">
@@ -320,7 +344,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
                 type="number"
                 step="0.01"
                 value={formData.entryPrice || ''}
-                onChange={(e) => setFormData({ ...formData, entryPrice: parseFloat(e.target.value) || 0 })}
+                onChange={(e) => updateFormData({ entryPrice: parseFloat(e.target.value) || 0 })}
               />
             </div>
             <div className="space-y-2">
@@ -330,17 +354,20 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
                 type="number"
                 step="0.01"
                 value={formData.closePrice || ''}
-                onChange={(e) => setFormData({ ...formData, closePrice: e.target.value ? parseFloat(e.target.value) : null })}
+                onChange={(e) => updateFormData({ closePrice: e.target.value ? parseFloat(e.target.value) : null })}
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="pnl">{t('import.manual.pnl')}</Label>
+              <Label htmlFor="pnl">{t('import.manual.pnl')} {!pnlManuallySet && formData.closePrice ? '(auto)' : ''}</Label>
               <Input
                 id="pnl"
                 type="number"
                 step="0.01"
                 value={formData.pnl || ''}
-                onChange={(e) => setFormData({ ...formData, pnl: parseFloat(e.target.value) || 0 })}
+                onChange={(e) => {
+                  setPnlManuallySet(true)
+                  setFormData(prev => ({ ...prev, pnl: parseFloat(e.target.value) || 0 }))
+                }}
               />
             </div>
             <div className="space-y-2">
@@ -349,7 +376,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
                 id="entryDate"
                 type="datetime-local"
                 value={formData.entryDate}
-                onChange={(e) => setFormData({ ...formData, entryDate: e.target.value })}
+                onChange={(e) => updateFormData({ entryDate: e.target.value })}
               />
             </div>
             <div className="space-y-2">
@@ -358,7 +385,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
                 id="closeDate"
                 type="datetime-local"
                 value={formData.closeDate || ''}
-                onChange={(e) => setFormData({ ...formData, closeDate: e.target.value || null })}
+                onChange={(e) => updateFormData({ closeDate: e.target.value || null })}
               />
             </div>
             <div className="space-y-2">
@@ -368,7 +395,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
                 type="number"
                 step="1"
                 value={formData.timeInPosition || ''}
-                onChange={(e) => setFormData({ ...formData, timeInPosition: e.target.value ? parseInt(e.target.value) : null })}
+                onChange={(e) => updateFormData({ timeInPosition: e.target.value ? parseInt(e.target.value) : null })}
               />
             </div>
             <div className="space-y-2">
@@ -378,7 +405,7 @@ export default function ManualProcessor({ processedTrades, setProcessedTrades, a
                 type="number"
                 step="0.01"
                 value={formData.commission || ''}
-                onChange={(e) => setFormData({ ...formData, commission: e.target.value ? parseFloat(e.target.value) : null })}
+                onChange={(e) => updateFormData({ commission: e.target.value ? parseFloat(e.target.value) : null })}
               />
             </div>
           </div>
